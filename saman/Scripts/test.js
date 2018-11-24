@@ -1,12 +1,13 @@
 ﻿// JavaScript source code
 function searchPerson() {
-    var codeMelli = $("#Prescription_PersonId").val();
-    if (codeMelli.length == 10) {
+    var personalCode = $("#Prescription_Person_PesonalCode").val();
+   
+    if (personalCode.length == 5) {
         $.ajax({
             url: 'GetPerson',
             type: 'Post',
             dataType: 'Json',
-            data: { NationalCode: codeMelli },
+            data: { PersonalCode: personalCode },
             success: function (result) {
                 if (result.Success) {
                     var data = JSON.parse(result.Html)
@@ -17,8 +18,8 @@ function searchPerson() {
                         $("#Prescription_Person_Name").text(data[0].Name);
                         $("#Prescription_Person_LName").val(data[0].LName);
                         $("#Prescription_Person_LName").text(data[0].LName);
-                        $("#Prescription_Person_FatherName").val(data[0].FatherName);
-                        $("#Prescription_Person_FatherName").text(data[0].FatherName);
+                        $("#Prescription_PersonId").val(data[0].CodeMelli);
+                        $("#Prescription_PersonId").text(data[0].CodeMelli);
                         //  html = "";
                         //  $("#Personlist").html(html);
                     }
@@ -28,5 +29,5 @@ function searchPerson() {
 
             }
         })
-    } // #if(codeMelli.length == 10)
+    } // #if(personalCode.length !=0)
 }

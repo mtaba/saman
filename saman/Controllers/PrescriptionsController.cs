@@ -183,7 +183,7 @@ namespace saman.Controllers
 
             var model = blPerson.Where(p => p.PesonalCode == PersonalCode);
 
-
+            
             try
             {
                 string html = JsonConvert.SerializeObject(model, Formatting.None,
