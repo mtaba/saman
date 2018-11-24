@@ -1,0 +1,126 @@
+﻿@model saman.Models.DomainModels.Prescription
+
+@{
+    ViewBag.Title = "ویرایش";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@section styles{
+    @Styles.Render("~/Styles/calendar")
+}
+<div class="row">
+    <div class="col-md-12">
+
+          
+  @*      @using (Ajax.BeginForm("Edit", "Prescriptions", new AjaxOptions { HttpMethod = "Post"}))*@
+       @using (Html.BeginForm())
+       { 
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal box box-primary">
+                <div class="box-body">
+                    <hr />
+ 
+                    <div class="box-heade">
+                        <h4 class="box-title">مشخصات بیمه شده</h4>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PersonId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.PersonId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PersonId, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.Person.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Person.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.LName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.LName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Person.LName, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.Person.FatherName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.FatherName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Person.FatherName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="box-heade">
+                        <h4 class="box-title">مشخصات نسخه</h4>
+                    </div>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.Date, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#Date", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Payable, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Payable, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Payable, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.SentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(model => model.SentDate, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#SentDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
+                            @Html.ValidationMessageFor(model => model.SentDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Period, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Period, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Period, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.TreatmentType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownList("TreatmentType", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.TreatmentType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="ذخیره" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+</div>
+<div>
+    @Html.ActionLink("بازگشت به لیست", "Search")
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/calendar")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+
+}
+
+

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<saman.Models.DomainModels.Cheque>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+
+            <div class="box-heade">
+                <h4 class="box-title">لیست چک ها</h4>
+            </div>
+
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ChequeId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Bank.Name)
+                        </th>
+
+                        <th>عملیات</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChequeId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Bank.Name)
+                            </td>
+
+                            <td>
+
+                                @Html.ActionLink("ویرایش", "Edit", new { id = item.ChequeId }) |
+
+
+                                <!--  <a href="/Cheques/Delete/" class="DeleteCheque" cheqId="" >حذف</a>        -->
+
+                                @Html.ActionLink("حذف", "Delete", new { id = item.ChequeId }, new { @class = "DeleteCheque", cheqId = item.ChequeId, onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
+
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

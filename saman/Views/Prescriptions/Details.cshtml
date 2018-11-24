@@ -1,0 +1,90 @@
+﻿@model saman.Models.DomainModels.Prescription
+
+@{
+    ViewBag.Title = "جزئیات";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+
+
+        <div class="box">
+            <div class="box-header">
+                <h4>نسخه</h4>
+            </div>
+
+            <hr />
+            <div class="box-body">
+                <table class="table table-bordered table-striped">
+
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Date)
+                        </td>
+
+                        <td>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Price)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Payable)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Payable)
+                        </td>
+
+                        <td>
+                            @Html.DisplayNameFor(model => model.SentDate)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.SentDate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Period)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Period)
+                        </td>
+
+                        <td>
+                            @Html.DisplayNameFor(model => model.Person.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Person.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.TreatmentType1.Value)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(model => model.TreatmentType1.Value)
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+        <p>
+            @Html.ActionLink("ویرایش", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("بازگشت به لیست", "Search")
+        </p>
+    </div>

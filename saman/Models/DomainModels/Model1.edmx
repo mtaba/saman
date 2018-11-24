@@ -1,0 +1,988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SamanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Banks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cheques">
+          <Key>
+            <PropertyRef Name="ChequeId" />
+          </Key>
+          <Property Name="ChequeId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Date" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="bigint" Nullable="false" />
+          <Property Name="BankId" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="int" Nullable="false" />
+          <Property Name="PaymentId" Type="int" Nullable="false" />
+          <Property Name="AccountNumber" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HealthInsurances">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="PaymentMethod" Type="tinyint" Nullable="false" />
+          <Property Name="Price" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="StartDate" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="EndDate" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="StartDate" Type="nchar" MaxLength="10" />
+          <Property Name="EndDate" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CompaniId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Letters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IssueDate" Type="datetime" Nullable="false" />
+          <Property Name="ValidDateFrom" Type="datetime" Nullable="false" />
+          <Property Name="ValidDateEnd" Type="datetime" Nullable="false" />
+          <Property Name="IssuedTo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Text" Type="text" />
+          <Property Name="Number" Type="tinyint" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mardrak">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MadrakText" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentDate" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="PaymentMethod" Type="int" Nullable="false" />
+          <Property Name="Reason" Type="tinyint" Nullable="false" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="StartDate" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EndDate" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person-Madraks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MadrakId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="CodeMelli" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PesonalCode" Type="nchar" MaxLength="10" />
+          <Property Name="IdentityNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SodurPlace" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthYear" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="BirthMonth" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="BirthDay" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CodeMelli" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Tel" Type="nchar" MaxLength="11" />
+          <Property Name="Jens" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BSKind" Type="nchar" MaxLength="2" />
+          <Property Name="Nesbat" Type="char" MaxLength="2" />
+          <Property Name="TakafolKind" Type="nchar" MaxLength="10" />
+          <Property Name="ShebaAcc" Type="nvarchar" MaxLength="100" />
+          <Property Name="DeathDate" Type="char" MaxLength="10" />
+          <Property Name="ParentId" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
+          <Property Name="Responsible" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="int" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="bigint" Nullable="false" />
+          <Property Name="Payable" Type="bigint" Nullable="false" />
+          <Property Name="SentDate" Type="char" MaxLength="10" />
+          <Property Name="Period" Type="smallint" />
+          <Property Name="TreatmentType" Type="int" Nullable="false" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Retirees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="RetirementId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RetirementTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TreatmentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cheques_Banks">
+          <End Role="Banks" Type="Self.Banks" Multiplicity="1" />
+          <End Role="Cheques" Type="Self.Cheques" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheques">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheques_Payments">
+          <End Role="Payments" Type="Self.Payments" Multiplicity="1" />
+          <End Role="Cheques" Type="Self.Cheques" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheques">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthInsurances_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="HealthInsurances" Type="Self.HealthInsurances" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="HealthInsurances">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobs_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="CompaniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobs_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person-Madraks_Mardrak">
+          <End Role="Mardrak" Type="Self.Mardrak" Multiplicity="1" />
+          <End Role="Person-Madraks" Type="Self.Person-Madraks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mardrak">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person-Madraks">
+              <PropertyRef Name="MadrakId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person-Madraks_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Person-Madraks" Type="Self.Person-Madraks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Person-Madraks">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_TreatmentType">
+          <End Role="TreatmentType" Type="Self.TreatmentType" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreatmentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="TreatmentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retirees_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="1" />
+          <End Role="Retirees" Type="Self.Retirees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Retirees">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retirees_RetirementTypes">
+          <End Role="RetirementTypes" Type="Self.RetirementTypes" Multiplicity="1" />
+          <End Role="Retirees" Type="Self.Retirees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RetirementTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Retirees">
+              <PropertyRef Name="RetirementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SamanModelStoreContainer">
+          <EntitySet Name="Banks" EntityType="Self.Banks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cheques" EntityType="Self.Cheques" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthInsurances" EntityType="Self.HealthInsurances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Letters" EntityType="Self.Letters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mardrak" EntityType="Self.Mardrak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person-Madraks" EntityType="Self.Person-Madraks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persons" EntityType="Self.Persons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Retirees" EntityType="Self.Retirees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RetirementTypes" EntityType="Self.RetirementTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TreatmentType" EntityType="Self.TreatmentType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cheques_Banks" Association="Self.FK_Cheques_Banks">
+            <End Role="Banks" EntitySet="Banks" />
+            <End Role="Cheques" EntitySet="Cheques" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheques_Payments" Association="Self.FK_Cheques_Payments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Cheques" EntitySet="Cheques" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthInsurances_Persons" Association="Self.FK_HealthInsurances_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="HealthInsurances" EntitySet="HealthInsurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobs_Companies" Association="Self.FK_Jobs_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobs_Persons" Association="Self.FK_Jobs_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Persons" Association="Self.FK_Payments_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person-Madraks_Mardrak" Association="Self.FK_Person-Madraks_Mardrak">
+            <End Role="Mardrak" EntitySet="Mardrak" />
+            <End Role="Person-Madraks" EntitySet="Person-Madraks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person-Madraks_Persons" Association="Self.FK_Person-Madraks_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Person-Madraks" EntitySet="Person-Madraks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Persons" Association="Self.FK_Prescription_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_TreatmentType" Association="Self.FK_Prescription_TreatmentType">
+            <End Role="TreatmentType" EntitySet="TreatmentType" />
+            <End Role="Prescription" EntitySet="Prescription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retirees_Persons" Association="Self.FK_Retirees_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Retirees" EntitySet="Retirees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retirees_RetirementTypes" Association="Self.FK_Retirees_RetirementTypes">
+            <End Role="RetirementTypes" EntitySet="RetirementTypes" />
+            <End Role="Retirees" EntitySet="Retirees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SamanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheques_Banks" FromRole="Banks" ToRole="Cheques" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="ChequeId" />
+          </Key>
+          <Property Name="ChequeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Int64" Nullable="false" />
+          <Property Name="BankId" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="Int32" Nullable="false" />
+          <Property Name="PaymentId" Type="Int32" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_Cheques_Banks" FromRole="Cheques" ToRole="Banks" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Cheques_Payments" FromRole="Cheques" ToRole="Payments" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Companies" FromRole="Companies" ToRole="Jobs" />
+        </EntityType>
+        <EntityType Name="HealthInsurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PaymentMethod" Type="Byte" Nullable="false" />
+          <Property Name="Price" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_HealthInsurances_Persons" FromRole="HealthInsurances" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Position" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CompaniId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Self.FK_Jobs_Companies" FromRole="Jobs" ToRole="Companies" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Jobs_Persons" FromRole="Jobs" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Letter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValidDateFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ValidDateEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IssuedTo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Reason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="Byte" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mardrak">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MadrakText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Person_Madraks" Relationship="Self.FK_Person_Madraks_Mardrak" FromRole="Mardrak" ToRole="Person_Madraks" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PaymentMethod" Type="Int32" Nullable="false" />
+          <Property Name="Reason" Type="Byte" Nullable="false" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheques_Payments" FromRole="Payments" ToRole="Cheques" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Payments_Persons" FromRole="Payments" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Person_Madraks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MadrakId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Mardrak" Relationship="Self.FK_Person_Madraks_Mardrak" FromRole="Person_Madraks" ToRole="Mardrak" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Person_Madraks_Persons" FromRole="Person_Madraks" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="CodeMelli" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PesonalCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IdentityNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SodurPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BirthMonth" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="BirthDay" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CodeMelli" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Tel" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Jens" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BSKind" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="Nesbat" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="TakafolKind" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ShebaAcc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeathDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ParentId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="HealthInsurances" Relationship="Self.FK_HealthInsurances_Persons" FromRole="Persons" ToRole="HealthInsurances" />
+          <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Persons" FromRole="Persons" ToRole="Jobs" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Persons" FromRole="Persons" ToRole="Payments" />
+          <NavigationProperty Name="Person_Madraks" Relationship="Self.FK_Person_Madraks_Persons" FromRole="Persons" ToRole="Person_Madraks" />
+          <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_Persons" FromRole="Persons" ToRole="Prescription" />
+          <NavigationProperty Name="Retirees" Relationship="Self.FK_Retirees_Persons" FromRole="Persons" ToRole="Retirees" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <Property Name="Responsible" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Prescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Int64" Nullable="false" />
+          <Property Name="Payable" Type="Int64" Nullable="false" />
+          <Property Name="SentDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Period" Type="Int16" />
+          <Property Name="TreatmentType" Type="Int32" Nullable="false" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Prescription_Persons" FromRole="Prescription" ToRole="Persons" />
+          <NavigationProperty Name="TreatmentType1" Relationship="Self.FK_Prescription_TreatmentType" FromRole="Prescription" ToRole="TreatmentType" />
+        </EntityType>
+        <EntityType Name="Retiree">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="RetirementId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Retirees_Persons" FromRole="Retirees" ToRole="Persons" />
+          <NavigationProperty Name="RetirementType" Relationship="Self.FK_Retirees_RetirementTypes" FromRole="Retirees" ToRole="RetirementTypes" />
+        </EntityType>
+        <EntityType Name="RetirementType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Retirees" Relationship="Self.FK_Retirees_RetirementTypes" FromRole="RetirementTypes" ToRole="Retirees" />
+        </EntityType>
+        <EntityType Name="TreatmentType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_TreatmentType" FromRole="TreatmentType" ToRole="Prescription" />
+        </EntityType>
+        <Association Name="FK_Cheques_Banks">
+          <End Role="Banks" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Cheques" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheques">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheques_Payments">
+          <End Role="Payments" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Cheques" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cheques">
+              <PropertyRef Name="PaymentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobs_Companies">
+          <End Role="Companies" Type="Self.Company" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="CompaniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HealthInsurances_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="HealthInsurances" Type="Self.HealthInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="HealthInsurances">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobs_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Jobs" Type="Self.Job" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Jobs">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Madraks_Mardrak">
+          <End Role="Mardrak" Type="Self.Mardrak" Multiplicity="1" />
+          <End Role="Person_Madraks" Type="Self.Person_Madraks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mardrak">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Person_Madraks">
+              <PropertyRef Name="MadrakId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payments_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Payments" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Person_Madraks_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Person_Madraks" Type="Self.Person_Madraks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Person_Madraks">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retirees_Persons">
+          <End Role="Persons" Type="Self.Person" Multiplicity="1" />
+          <End Role="Retirees" Type="Self.Retiree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="CodeMelli" />
+            </Principal>
+            <Dependent Role="Retirees">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescription_TreatmentType">
+          <End Role="TreatmentType" Type="Self.TreatmentType" Multiplicity="1" />
+          <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TreatmentType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescription">
+              <PropertyRef Name="TreatmentType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Retirees_RetirementTypes">
+          <End Role="RetirementTypes" Type="Self.RetirementType" Multiplicity="1" />
+          <End Role="Retirees" Type="Self.Retiree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RetirementTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Retirees">
+              <PropertyRef Name="RetirementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SamanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Banks" EntityType="Self.Bank" />
+          <EntitySet Name="Cheques" EntityType="Self.Cheque" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="HealthInsurances" EntityType="Self.HealthInsurance" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="Letters" EntityType="Self.Letter" />
+          <EntitySet Name="Mardraks" EntityType="Self.Mardrak" />
+          <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Person_Madraks" EntityType="Self.Person_Madraks" />
+          <EntitySet Name="Persons" EntityType="Self.Person" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="Prescriptions" EntityType="Self.Prescription" />
+          <EntitySet Name="Retirees" EntityType="Self.Retiree" />
+          <EntitySet Name="RetirementTypes" EntityType="Self.RetirementType" />
+          <EntitySet Name="TreatmentTypes" EntityType="Self.TreatmentType" />
+          <AssociationSet Name="FK_Cheques_Banks" Association="Self.FK_Cheques_Banks">
+            <End Role="Banks" EntitySet="Banks" />
+            <End Role="Cheques" EntitySet="Cheques" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheques_Payments" Association="Self.FK_Cheques_Payments">
+            <End Role="Payments" EntitySet="Payments" />
+            <End Role="Cheques" EntitySet="Cheques" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobs_Companies" Association="Self.FK_Jobs_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HealthInsurances_Persons" Association="Self.FK_HealthInsurances_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="HealthInsurances" EntitySet="HealthInsurances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobs_Persons" Association="Self.FK_Jobs_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Jobs" EntitySet="Jobs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Madraks_Mardrak" Association="Self.FK_Person_Madraks_Mardrak">
+            <End Role="Mardrak" EntitySet="Mardraks" />
+            <End Role="Person_Madraks" EntitySet="Person_Madraks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payments_Persons" Association="Self.FK_Payments_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Person_Madraks_Persons" Association="Self.FK_Person_Madraks_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Person_Madraks" EntitySet="Person_Madraks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_Persons" Association="Self.FK_Prescription_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retirees_Persons" Association="Self.FK_Retirees_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Retirees" EntitySet="Retirees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescription_TreatmentType" Association="Self.FK_Prescription_TreatmentType">
+            <End Role="TreatmentType" EntitySet="TreatmentTypes" />
+            <End Role="Prescription" EntitySet="Prescriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Retirees_RetirementTypes" Association="Self.FK_Retirees_RetirementTypes">
+            <End Role="RetirementTypes" EntitySet="RetirementTypes" />
+            <End Role="Retirees" EntitySet="Retirees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SamanModelStoreContainer" CdmEntityContainer="SamanEntities">
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="SamanModel.Bank">
+              <MappingFragment StoreEntitySet="Banks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cheques">
+            <EntityTypeMapping TypeName="SamanModel.Cheque">
+              <MappingFragment StoreEntitySet="Cheques">
+                <ScalarProperty Name="ChequeId" ColumnName="ChequeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="SamanModel.Company">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthInsurances">
+            <EntityTypeMapping TypeName="SamanModel.HealthInsurance">
+              <MappingFragment StoreEntitySet="HealthInsurances">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="SamanModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="CompaniId" ColumnName="CompaniId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Letters">
+            <EntityTypeMapping TypeName="SamanModel.Letter">
+              <MappingFragment StoreEntitySet="Letters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+                <ScalarProperty Name="ValidDateFrom" ColumnName="ValidDateFrom" />
+                <ScalarProperty Name="ValidDateEnd" ColumnName="ValidDateEnd" />
+                <ScalarProperty Name="IssuedTo" ColumnName="IssuedTo" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mardraks">
+            <EntityTypeMapping TypeName="SamanModel.Mardrak">
+              <MappingFragment StoreEntitySet="Mardrak">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MadrakText" ColumnName="MadrakText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="SamanModel.Payment">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_Madraks">
+            <EntityTypeMapping TypeName="SamanModel.Person_Madraks">
+              <MappingFragment StoreEntitySet="Person-Madraks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="MadrakId" ColumnName="MadrakId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="SamanModel.Person">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="PesonalCode" ColumnName="PesonalCode" />
+                <ScalarProperty Name="IdentityNo" ColumnName="IdentityNo" />
+                <ScalarProperty Name="SodurPlace" ColumnName="SodurPlace" />
+                <ScalarProperty Name="BirthYear" ColumnName="BirthYear" />
+                <ScalarProperty Name="BirthMonth" ColumnName="BirthMonth" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="CodeMelli" ColumnName="CodeMelli" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Jens" ColumnName="Jens" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="BSKind" ColumnName="BSKind" />
+                <ScalarProperty Name="Nesbat" ColumnName="Nesbat" />
+                <ScalarProperty Name="TakafolKind" ColumnName="TakafolKind" />
+                <ScalarProperty Name="ShebaAcc" ColumnName="ShebaAcc" />
+                <ScalarProperty Name="DeathDate" ColumnName="DeathDate" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="SamanModel.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescriptions">
+            <EntityTypeMapping TypeName="SamanModel.Prescription">
+              <MappingFragment StoreEntitySet="Prescription">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Payable" ColumnName="Payable" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="TreatmentType" ColumnName="TreatmentType" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Retirees">
+            <EntityTypeMapping TypeName="SamanModel.Retiree">
+              <MappingFragment StoreEntitySet="Retirees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="RetirementId" ColumnName="RetirementId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RetirementTypes">
+            <EntityTypeMapping TypeName="SamanModel.RetirementType">
+              <MappingFragment StoreEntitySet="RetirementTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TreatmentTypes">
+            <EntityTypeMapping TypeName="SamanModel.TreatmentType">
+              <MappingFragment StoreEntitySet="TreatmentType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

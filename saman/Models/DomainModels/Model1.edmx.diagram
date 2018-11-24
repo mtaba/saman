@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e10b8472f9b4abcbb6f005accc25406" Name="Diagram1">
+        <EntityTypeShape EntityType="SamanModel.Bank" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Cheque" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Company" Width="1.5" PointX="3.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.HealthInsurance" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Job" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Letter" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Mardrak" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Payment" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Person_Madraks" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Person" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Place" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Prescription" Width="1.5" PointX="8" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.Retiree" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.RetirementType" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SamanModel.TreatmentType" Width="1.5" PointX="5.75" PointY="22.5" IsExpanded="true" />
+        <AssociationConnector Association="SamanModel.FK_Cheques_Banks" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Cheques_Payments" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Jobs_Companies" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_HealthInsurances_Persons" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Jobs_Persons" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Person_Madraks_Mardrak" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Payments_Persons" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Person_Madraks_Persons" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Prescription_Persons" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Retirees_Persons" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Prescription_TreatmentType" ManuallyRouted="false" />
+        <AssociationConnector Association="SamanModel.FK_Retirees_RetirementTypes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

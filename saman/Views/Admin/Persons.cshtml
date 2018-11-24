@@ -1,0 +1,140 @@
+﻿@model IEnumerable<saman.Models.DomainModels.Person>
+
+@*@Styles.Render("~/AdminLTE/plugins/datatables/css")*@
+@Styles.Render("~/Content/css")
+@section Menu {
+    @Scripts.Render("~/Scripts/Tables/Data/menu")
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/dataTables.bootstrap.min.css" />
+
+@{
+
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@{
+    ViewBag.Title = "ویرایش بازنشسته";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@if (TempData["Addresult"] != null && ((string)TempData["Addresult"] == "ok"))
+{
+    <div id="alert-success" class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        @*  <h4><i class="icon fa fa-ban"></i>خطا!</h4>*@
+        <strong>شخص مورد نظر با موفقیت اضافه شد</strong>
+    </div>
+}
+@{ }
+<p>
+    @Html.ActionLink("افزودن اشخاص", "AddPerson")
+</p>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">لیست اشخاص</h3>
+            </div>
+            <div class="box-body">
+
+                <table id="personListTable" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayNameFor(Model => Model.PesonalCode)</th>
+                            <th>@Html.DisplayNameFor(Model => Model.Name)</th>
+                            <th>@Html.DisplayNameFor(Model => Model.LName)</th>
+                            <th>@Html.DisplayNameFor(Model => Model.CodeMelli)</th>
+
+                            <th>عملیات</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>کد پرسنلی</th>
+                            <th>نام</th>
+                            <th>نام خانوادگی</th>
+
+                            <th>کدملی</th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(Model => item.PesonalCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(Model => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(Model => item.LName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(Model => item.CodeMelli)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("جزئیات", "DetailsPerson", new { id = item.CodeMelli }) |
+                                @Html.ActionLink("ویرایش", "EditPerson", new { id = item.CodeMelli }) |
+                                @Html.ActionLink("حذف", "DeletePerson", new { id = item.CodeMelli }, new { onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/datatables/js")
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#personListTable').DataTable({
+                "language": {
+
+                    "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
+                    "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
+                    "sInfoEmpty": "نمایش 0 تا 0 از 0 رکورد",
+                    "sInfoFiltered": "(فیلتر شده از _MAX_ رکورد)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ",",
+                    "sLengthMenu": "نمایش _MENU_ رکورد",
+                    "sLoadingRecords": "در حال بارگزاری...",
+                    "sProcessing": "در حال پردازش...",
+                    "sSearch": "جستجو:",
+                    "sZeroRecords": "رکوردی با این مشخصات پیدا نشد",
+                    "oPaginate": {
+                        "sFirst": "ابتدا",
+                        "sLast": "انتها",
+                        "sNext": "بعدی",
+                        "sPrevious": "قبلی"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": فعال سازی نمایش به صورت صعودی",
+                        "sSortDescending": ": فعال سازی نمایش به صورت نزولی"
+                    }
+                }
+            })
+        });
+
+    </script>
+
+    <script>
+        $("#alert-success").fadeTo(5000, 500).slideUp(500, function () {
+            $("#alert-success").slideUp(500);
+        });
+    </script>
+}
+
+

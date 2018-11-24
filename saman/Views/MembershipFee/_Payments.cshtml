@@ -1,0 +1,61 @@
+﻿@model IEnumerable<saman.Models.DomainModels.Payment>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+
+            <div class="box-heade">
+                <h4 class="box-title">لیست پرداخت ها</h4>
+            </div>
+
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Person.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Person.LName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndDate)
+                        </th>
+                      
+                   <th>عملیات</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Person.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Person.LName)
+                            </td> 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td>
+                                @Html.ActionLink("مشاهده چک ها", "Create", "Cheques", new { id = item.Id },new { })
+                               </td>
+                            
+
+
+                        </tr>
+                    }
+
+                </table>
+              </div>
+        </div>
+    </div>
+</div>
+
+

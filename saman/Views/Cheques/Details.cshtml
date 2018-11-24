@@ -1,0 +1,66 @@
+﻿@model saman.Models.DomainModels.Cheque
+
+@{
+    ViewBag.Title = "جزئیات";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+ 
+<div>
+    <h4>چک</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Payment.Person.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Payment.Person.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(",ویرایش", "ویرایش", new { id = Model.ChequeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

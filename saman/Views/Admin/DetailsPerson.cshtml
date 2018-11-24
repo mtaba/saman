@@ -1,0 +1,98 @@
+﻿@model saman.Models.DomainModels.Person
+
+@{
+    ViewBag.Title = "جزئیات اشخاص";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+
+
+        <div class="box">
+            <div class="box-header">
+                <h4>شخص</h4>
+            </div>
+
+            <hr />
+            <div class="box-body">
+                <table class="table table-bordered table-striped">
+
+                    <tr>
+
+                        <td>@Html.DisplayNameFor(model => model.Name)</td>
+                        <td>
+                            @Html.DisplayFor(model => model.Name)
+                        </td>
+
+                    </tr>
+                    <tr>
+
+                        <td>@Html.DisplayNameFor(model => model.LName)</td>
+                        <td>@Html.DisplayFor(model => model.LName)</td>
+
+                    </tr>
+                    <tr>
+
+                        <td>@Html.DisplayNameFor(model => model.IdentityNo)</td>
+                        <td>@Html.DisplayFor(model => model.IdentityNo) </td>
+
+                    </tr>
+                    <tr>
+
+                        <td>@Html.DisplayNameFor(model => model.SodurPlace)</td>
+                        <td>@Html.DisplayFor(model => model.SodurPlace) </td>
+
+                    </tr>
+                    <tr>
+
+                        <td>@Html.DisplayNameFor(model => model.FatherName)</td>
+                        <td>@Html.DisplayFor(model => model.FatherName) </td>
+
+                    </tr>
+                    <tr>
+
+                        <td>@Html.DisplayNameFor(model => model.CodeMelli)</td>
+                        <td>@Html.DisplayFor(model => model.CodeMelli)</td>
+
+                    </tr>
+                    <tr>
+
+                        <td><label>تاریخ تولد</label></td>
+                        <td>@Html.DisplayFor(model => model.BirthDay) / @Html.DisplayFor(model => model.BirthMonth) / @Html.DisplayFor(model => model.BirthYear)</td>
+
+                    </tr>
+                   
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Nesbat)</td>
+                        <td>@Html.DisplayFor(model => model.Nesbat) </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.PesonalCode)</td>
+                        <td>@Html.DisplayFor(model => model.PesonalCode) </td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Tel)</td>
+                        <td>@Html.DisplayFor(model => model.Tel) </td>
+                    </tr>
+               
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DeathDate)</td>
+                        <td>@Html.DisplayFor(model => model.DeathDate) </td>
+                    </tr>
+             
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "EditPerson", new { id = Model.CodeMelli }) |
+    @Html.ActionLink("لیست بازنشستگان", "Persons")
+</p>

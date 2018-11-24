@@ -1,0 +1,207 @@
+﻿
+@model saman.VIewModels.PersonViewModel
+
+@{
+    ViewBag.Title = "افزودن اشخاص";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+            <div class="box-heade">
+                <h4 class="box-title">اطلاعات شخص</h4>
+                @ViewBag.Message
+            </div>
+            @using (Html.BeginForm("AddPerson","Admin",FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <hr />
+                <div class="box-body">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.Name, "", new { @class = "text-danger" })
+                        </div>
+                 
+
+                  
+                        @Html.LabelFor(model => model.Person.LName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.LName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.LName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.IdentityNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.IdentityNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.IdentityNo, "", new { @class = "text-danger" })
+                        </div>
+                    
+                
+                        @Html.LabelFor(model => model.Person.SodurPlace, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.SodurPlace, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.SodurPlace, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.FatherName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.FatherName, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                     
+                        @Html.LabelFor(model => model.Person.CodeMelli, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.CodeMelli, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.CodeMelli, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.BirthDay, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.BirthDay, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.BirthDay, "", new { @class = "text-danger" })
+                        </div>
+                     
+                    
+                        @Html.LabelFor(model => model.Person.BirthMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.BirthMonth, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.BirthMonth, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.BirthYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.BirthYear, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.BirthYear, "", new { @class = "text-danger" })
+                        </div>
+                   
+                    
+                        @Html.LabelFor(model => model.Person.Jens, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                            @Html.DropDownListFor(model => model.Person.Jens, new[] { new SelectListItem { Text = "مرد", Value = "26" } , new SelectListItem { Text = "زن", Value = "27" } }, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.Jens, "", new { @class = "text-danger" })
+                        </div>
+                       </div>
+                    </div>
+                    
+                <div class="form-group">
+                            @Html.LabelFor(model => model.Person.Nesbat, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    @Html.DropDownListFor(model => model.Person.Nesbat, new[] { new SelectListItem { Text = "بازنشسته", Value = "" }, new SelectListItem { Text = "همسر", Value = "12" } , new SelectListItem { Text = "دختر", Value = "8" } ,  new SelectListItem { Text = "پسر", Value = "7" }, new SelectListItem { Text = "مادر", Value = "6" } }, new { htmlAttributes = new { @class = "form-control" } })    
+                                    @Html.ValidationMessageFor(model => model.Person.Nesbat, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                   
+
+                  
+                        @Html.LabelFor(model => model.Person.ParentId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            
+                                @Html.EditorFor(model => model.Person.ParentId, new { htmlAttributes = new { @class = "form-control" } })  
+                                @Html.ValidationMessageFor(model => model.Person.ParentId, "", new { @class = "text-danger" })
+                            
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.PesonalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.PesonalCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.PesonalCode, "", new { @class = "text-danger" })
+                        </div>
+                    
+
+                       
+                            @Html.LabelFor(model => model.Person.DeathDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Person.DeathDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Person.DeathDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                     
+
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-md-9">
+                                <input type="submit" value="افزودن" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+
+            }
+                </div>
+    </div>
+</div>
+
+<div>
+ 
+    @Html.ActionLink("لیست اشخاص", "Persons")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/AdminLTE/plugins/jquery-validate/js")
+
+
+}
+<script src="@Url.Content("~/AdminLTE/plugins/jquery-validate/js/jquery.validate.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+<script>
+  
+
+    function jsfunction(evt) {
+          evt.preventDefault();
+          return false;
+    }
+
+  
+    function getCityList(){
+
+        var CompanyId = $("#Company").val();
+
+        $.ajax({
+            url: 'GetCityList/',
+            type: 'POST',
+            datatype: 'json',
+            data: { CompanyId: $("#Company").val() },
+            success: function (result) {
+                if (result.Success) {
+                    var data = JSON.parse(result.Html)
+                    var html = '';
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        html+=    
+                            '<text>'+
+                                '<option value="' + data[i].Id+'">'+ data[i].Name + '</option>'
+                           + '</text>'
+
+                    }
+                    $("#Person_CompanyId").html(html);
+                   
+                }
+            },
+            error: function (result) {
+                alert("اوه! مثل اینکه مشکلی وجود داره");
+            }
+
+        })
+      }
+
+</script>
+

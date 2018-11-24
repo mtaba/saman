@@ -1,0 +1,76 @@
+﻿@model saman.Models.DomainModels.Cheque 
+
+@{
+    ViewBag.Title = "ویرایش چک";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+            <div class="box-heade">
+                <h4 class="box-title">چک</h4>
+            </div>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                       
+                        <hr />
+                        <div class="box-body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ChequeId)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                </div>
+                       
+
+                         
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="BankId">نام بانک</label>
+                             @*   @Html.LabelFor(model => model.BankId, "BankId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                <div class="col-md-4">
+                                    @Html.DropDownList("BankId", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.BankId, "", new { @class = "text-danger" })
+                                </div>
+                            
+
+
+                        
+                                @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @Html.HiddenFor(model => model.PaymentId)
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="ذخیره" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                     
+                }
+                  </div>
+           </div>
+    </div>
+
+                <div>
+                    @Html.ActionLink("بازگشت به لیست", "Index")
+                </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }

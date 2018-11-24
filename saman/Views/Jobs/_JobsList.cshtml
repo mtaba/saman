@@ -1,0 +1,64 @@
+﻿@model IEnumerable<saman.Models.DomainModels.Job>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+            <div class="box-heade">
+                <h4 class="box-title">لیست سوابق</h4>
+            </div>
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Position)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Company.Name)
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Company.Name)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("جزئیات", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "DeleteJobs", id = item.Id, onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
+
+                                @*@Html.ActionLink("حذف", "Delete", new { id = item.Id })*@
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,79 @@
+﻿@model saman.VIewModels.ChequeViewModel
+
+@{
+    ViewBag.Title = "ثبت چک ";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@section styles{
+    
+<link href="~/Scripts/PersianDateTimePicker/jquery-ui-datetimepicker.min.css" rel="stylesheet" />
+    }
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="form-horizontal box box-primary">
+            <div class="box-heade">
+                <h4 class="box-title">ثبت اطلاعات چک های پرداختی</h4>
+            </div>
+@using (Ajax.BeginForm("Create", "Cheques", new AjaxOptions { UpdateTargetId = "Chequelist", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+
+{
+             @Html.AntiForgeryToken()
+            <div class="box-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cheque.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Cheque.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Cheque.AccountNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.Cheque.ChequeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Cheque.ChequeId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Cheque.ChequeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cheque.BankId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Cheque.BankId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Cheque.BankId, "", new { @class = "text-danger" })
+                    </div>
+
+
+
+                    @Html.LabelFor(model => model.Cheque.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Cheque.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Cheque.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cheque.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Cheque.Date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Cheque.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="افزودن" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+}
+        </div>
+       </div>
+    </div>
+       
+           <div id="Chequelist">
+               @Html.Partial("_Cheques", Model.Cheques)
+
+           </div>
+
+
+
+

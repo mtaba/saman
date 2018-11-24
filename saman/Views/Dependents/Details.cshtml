@@ -1,0 +1,99 @@
+﻿@model saman.Models.DomainModels.Dependent
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dependent</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Family)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Family)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Job)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Job)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dependency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dependency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FatherName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FatherName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Issued)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Issued)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.NationalCode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

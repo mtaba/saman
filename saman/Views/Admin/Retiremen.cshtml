@@ -1,0 +1,47 @@
+﻿@model IEnumerable<saman.Models.DomainModels.RetirementType>
+
+@{
+    ViewBag.Title = "نوع بازنشستگی";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("افزودن نوع بازنشستگی", "AddRetiremen")
+</p>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">بازنشستگی های تعریف شده</h3>
+            </div>
+            <div class="box-body">
+
+                <table  class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Value)
+                            </th>
+                            <th>عملیات</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Value)
+                                </td>
+                                <td>
+                                   
+                                    @Html.ActionLink("ویرایش", "EditRetiremen", new { id = item.Id }) |
+                                    @Html.ActionLink("حذف", "DeleteRetiremen", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+
+                </table>
+               </div>
+            </div>
+        </div>
+    </div>

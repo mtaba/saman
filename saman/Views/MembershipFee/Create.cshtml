@@ -1,0 +1,231 @@
+﻿@model saman.VIewModels.MembershipFeeViewModel
+
+@{
+    ViewBag.Title = "ثبت پرداخت";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@section styles{
+    @Styles.Render("~/Styles/calendar")
+}
+
+<div class="row">
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Create", "MembershipFee", FormMethod.Post))
+
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal box box-primary">
+                <div class="box-heade">
+                    <h4 class="box-title">دوره پرداخت</h4>
+                </div>
+                <hr />
+                <div class="box-body">
+                    <div class="row">              
+                            <div class="input-group col-md-4 col-lg-4">                               
+                                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#MembershipPayment_StartDate" data-englishnumber = "true" data-groupid="group1"    data-enabletimepicker="false" data-placement="left">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                           @*    <input type="text" class="form-control col-md-6" id="StartDate" name="StartDate" placeholder="از تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#StartDate" data-groupid="group1"  data-enabletimepicker="false"  data-placement="left"  data-disablebeforetoday="false"/>*@
+                              @Html.TextBoxFor(model => model.MembershipPayment.StartDate ,  htmlAttributes: new { @class = "form-control", placeholder = "از تاریخ", data_englishnumber = "true",  data_mddatetimepicker = "true" ,data_trigger = "click", data_targetselector = "#MembershipPayment_StartDate", data_groupid = "group1" , data_enabletimepicker = "false" , data_placement = "left" , data_disablebeforetoday = "false" }  )                        
+                            @Html.ValidationMessageFor(model=>model.MembershipPayment.StartDate,"",new { @class= "text-danger" })
+                            </div >
+
+
+                            <div class="input-group col-md-4 col-lg-4">
+                                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-englishnumber = "true" data-targetselector="#MembershipPayment_EndDate" data-groupid="group1" data-todate="true"  data-enabletimepicker="false" data-placement="left">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                               @* <input type = "text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="right" />*@
+                                @Html.TextBoxFor(model => model.MembershipPayment.EndDate, htmlAttributes: new { @class = "form-control", placeholder = "تا تاریخ", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#MembershipPayment_EndDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "left", data_disablebeforetoday = "false", data_todate = "true" })
+                                @Html.ValidationMessageFor(model => model.MembershipPayment.EndDate, "", new { @class = "text-danger" })
+                            </div>
+                            <div class=" col-md-4 col-lg-4">
+                                @Html.LabelFor(model => model.MembershipPayment.Reason, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+
+                                    @Html.DropDownListFor(model => model.MembershipPayment.Reason, new[] { new SelectListItem { Text = "حق عضویت", Value = "0" }, new SelectListItem { Text = "بیمه درمان", Value = "1" } , new SelectListItem { Text = "عمر و حادثه کشوری", Value = "2" } , new SelectListItem { Text = "عمر و حادثه تکمیلی", Value = "3" } }, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MembershipPayment.Reason, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+                    <div class="form-horizontal box box-primary">
+                        <div class="box-heade">
+                            <h4 class="box-title">جستجوی بازنشسته</h4>
+                        </div>
+
+                        <hr />
+                        <div class="box-body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Person.CodeMelli, htmlAttributes: new { @class = "control-label col-md-1" })
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.Person.CodeMelli, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
+                                    @*@Html.EditorFor(model => model.Person.CodeMelli, new { htmlAttributes = new { @class = "form-control" } })*@
+                                    @Html.ValidationMessageFor(model => model.Person.CodeMelli, "", new { @class = "text-danger" })
+                                </div>
+
+                                @Html.LabelFor(model => model.Person.Name, htmlAttributes: new { @class = "control-label col-md-1" })
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.Person.Name, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
+                                    @Html.ValidationMessageFor(model => model.Person.Name, "", new { @class = "text-danger" })
+                                </div>
+
+                                @Html.LabelFor(model => model.Person.LName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-2">
+                                    @Html.TextBoxFor(model => model.Person.LName, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
+                                    @Html.ValidationMessageFor(model => model.Person.LName, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-2" >
+                                    <button id="clear" onclick="clear()">پاک کردن</button>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-1 col-md-10">
+                                    <input type="submit" value="ثبت و ادامه" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        }  <!--#form--->
+
+        <div id="Personlist">
+
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/calendar")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+
+        function searchPerson() {
+            var codeMelli = $("#Person_CodeMelli").val();
+            var personName = $("#Person_Name").val();
+            var personFamily = $("#Person_LName").val();
+
+            $.ajax({
+                url: 'GetPerson',
+                type: 'Post',
+                dataType: 'Json',
+                data: { NationalCode: codeMelli, Name: personName, LName: personFamily },
+                success: function (result) {
+                    if (result.Success) {
+                        var data = JSON.parse(result.Html)
+
+                        var html = '<div class="form-horizontal box box-primary">   <div class="box-heade">  <h4 class="box-title">لیست بازنشستگان</h4>   </div> <hr />   <div class="box-body">   <table class="table"> <tr> <th>نام</th> <th>نام خانوادگی</th> <th>نام پدر</th> <th>کد ملی</th> </tr> ';
+                        for (var i = 0; i < data.length; i++) {
+                            html +=
+
+                                '<tr>' +
+                                   '<td>' + data[i].Name + '</td>' +
+                                   '<td>' + data[i].LName + '</td>' +
+                                   '<td>' + data[i].FatherName + '</td>' +
+                                   '<td>' + data[i].CodeMelli + '</td>' +
+                                '</tr>'
+                            ;
+                        }  //#for
+                        html += '</table></div></div>';
+                        $("#Personlist").html(html);
+
+                        if (data.length == 1) {
+
+                            $("#Person_Name").val(data[0].Name);
+                            $("#Person_Name").text(data[0].Name);
+                            $("#Person_LName").val(data[0].LName);
+                            $("#Person_LName").text(data[0].LName);
+                            $("#Person_CodeMelli").val(data[0].CodeMelli);
+                            $("#Person_CodeMelli").text(data[0].CodeMelli);
+                            html = "";
+                            $("#Personlist").html(html);
+                        }
+                    }
+                },
+                error: function (result) {
+
+                }
+            })
+        }
+
+        $(function (e) {
+
+            /*this function clear */
+            $("#clear").click(function (e) {
+                e.preventDefault();
+
+                $("#Person_Name").val("");
+                $("#Person_Name").text("");
+                $("#Person_LName").val("");
+                $("#Person_LName").text("");
+                $("#Person_CodeMelli").val("");
+                $("#Person_CodeMelli").text("");
+            }) //# clear.click
+
+
+
+            $(".DeleteCheque").click(function (e) {
+                if (confirm("آیا از حذف این چک مطمئن هستید؟")) {
+                    var id = $(this).attr('id');
+
+                    $.ajax({
+                        url: "/MembershipFee/DeleteCheque",
+                        data: { Id: id },
+                        type: "Post",
+                        dataType: "Json",
+                        success: function (result) {
+                            if (result.Success) {
+                                var data = JSON.parse(result.Html)
+                                var html = '<div class="form-horizontal box box-primary">   <div class="box-heade">  <h4 class="box-title">لیست چک های این پرداخت</h4>   </div> <hr />   <div class="box-body">   <table class="table"> <tr> <th>مبلغ چک</th> <th>تاریخ چک</th> <th>شماره چک</th><th>شماره حساب</th><th>نام بانک</th> <th>عملیات</th> </tr> ';
+                                for (var i = 0; i < data.length; i++) {
+                                    html +=
+
+                                        '<tr>' +
+                                           '<td>' + data[i].Price + '</td>' +
+                                           '<td>' + data[i].Date + '</td>' +
+                                            '<td>' + data[i].ChequeId + '</td>' +
+                                           '<td>' + data[i].AccountNumber + '</td>' +
+                                            '<td>' + data[i].BankId + '</td>' +
+
+                                        '</tr>'
+                                    ;
+                                }   // #for
+                                html += '</table></div></div>';
+                                $("#Chequelist").html(html);
+                            }   // #if result.success
+                        }  // #sucess function
+                        ,
+                        error: function () {
+                            alert("خطا در حذف چک!");
+                        }
+                    })  // #ajax
+                    return false;
+                } // end if
+                else {
+                    return false;
+                }      //# else
+            })        //#$(".DeleteCheque").click
+        })
+
+    </script>
+
+  
+ 
+} 

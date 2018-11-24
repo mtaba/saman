@@ -1,0 +1,106 @@
+﻿@model saman.VIewModels.ChequeViewModel
+@{
+   
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+    
+<link href="~/Scripts/PersianDateTimePicker/jquery-ui-datetimepicker.min.css" rel="stylesheet" />
+   <link href="~/Scripts/redmond/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" />
+ @using (Ajax.BeginForm("Create", "Cheques", new AjaxOptions { UpdateTargetId = "Chequelist", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+
+{ 
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+
+            <div class="box-heade">
+                <h4 class="box-title">ثبت چک ها</h4>
+            </div>
+
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cheque.ChequeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Cheque.ChequeId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cheque.ChequeId, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        @Html.LabelFor(model => model.Cheque.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Cheque.Date, new { htmlAttributes = new { @class = "form-control" ,id= "#chequeDate" } })
+                            @Html.ValidationMessageFor(model => model.Cheque.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cheque.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Cheque.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cheque.Price, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        @Html.LabelFor(model => model.Cheque.BankId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Cheque.BankId, new SelectList(Model.Banks,"Id","Name"), new { htmlAttributes = new { @class = "form-control" } })
+                          
+                            @Html.ValidationMessageFor(model => model.Cheque.BankId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+
+                        @Html.LabelFor(model => model.Cheque.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Cheque.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cheque.AccountNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="افزودن" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            
+          
+
+</div>
+        
+        </div>
+    </div>
+    <div id="Chequelist">
+        @Html.Partial("_Cheques", Model.Cheques)
+
+    </div>
+ }
+
+          
+
+@section scripts { 
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+   <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")"></script> 
+<script src="~/Scripts/PersianDateTimePicker/jquery-ui-datetimepicker.min.js"></script>
+
+<script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+
+
+<script type="text/javascript">
+        $(function () {
+            $("#chequeDate").timepicker();
+        });
+</script>
+}

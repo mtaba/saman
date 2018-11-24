@@ -1,0 +1,48 @@
+﻿@model IEnumerable<saman.Models.DomainModels.Prescription>
+@{
+    ViewBag.Title = "جستجوی خسارت درمان";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@{
+    ViewBag.Title = "Home Page";
+}
+ 
+
+
+ 
+@Scripts.Render("~/bundles/modernizr")
+
+
+<div class="container">
+    <h3>جستجوی نسخه ها</h3>
+
+    <div class="span12">
+        <table class="table table-striped" id="datatab">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PersonId)
+                    </th>
+                
+
+                </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PersonId)
+                    </th>
+                    
+                   
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+@section Scripts {
+@Scripts.Render("~/bundles/jquery")
+
+
+}

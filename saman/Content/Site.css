@@ -1,0 +1,48 @@
+﻿@font-face {
+    font-family: 'WYekan';
+    src: url('./fonts/YekanWeb-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+ 
+    padding-bottom: 20px;
+    font-family: 'WYekan';
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+
+/*****************************/
+th, tr {
+    text-align:center;
+}
+.box-title{margin-right:10px;}
+h4 {margin-right:10px;
+}
+
+.input-group[class*=col-] {
+        float: right;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.form-control{
+    padding-top:2px;
+    padding-bottom:2px;
+}
+h1, h2, h3, h4, h5, h6, p, .login-box, .register-box{
+    font-family:'WYekan';
+}

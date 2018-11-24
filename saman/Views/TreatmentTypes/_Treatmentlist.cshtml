@@ -1,0 +1,38 @@
+﻿@model IEnumerable<saman.Models.DomainModels.TreatmentType>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-horizontal box box-primary">
+            <div class="box-heade">
+                <h4 class="box-title">لیست نوع درمان</h4>
+            </div>
+            <div class="box-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Value)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Value)
+                            </td>
+                            <td>
+                                @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
+
+                                @Html.ActionLink("حذف", "Delete", new { id = item.Id }, new { @class = "DelTreatment", treatId = item.Id, onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
+
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
