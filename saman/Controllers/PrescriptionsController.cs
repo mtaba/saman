@@ -24,10 +24,10 @@ namespace saman.Controllers
         {
             var model = new VIewModels.PrescriptionViewModel();
 
-            var prescriptions = db.Prescriptions.Include(p => p.Person).Include(p => p.TreatmentType1).Where(p => p.PersonId == Id);
+            var prescriptions = db.Prescriptions.Include(p => p.Person).Include(t=>t.TreatmentType).Where(p => p.PersonId == Id);
             model.Prescriptions = prescriptions.ToList();
 
-            model.Treatments = db.TreatmentTypes.ToList();
+           //model.Treatments = db.TreatmentTypes.ToList();
             return View(model);
         }
 
@@ -52,7 +52,7 @@ namespace saman.Controllers
         public ActionResult Create()
         {
             PrescriptionViewModel model = new PrescriptionViewModel();
-            model.Treatments = db.TreatmentTypes.AsQueryable();
+            model.Treatments = db.TreatmentTypes.AsQueryable().ToList();
             model.Prescriptions = db.Prescriptions.AsQueryable().ToList().OrderBy(p => p.Id).Take(5);
             return View(model);
         }
@@ -67,6 +67,7 @@ namespace saman.Controllers
         {
             if (ModelState.IsValid)
             {
+                
 
                 db.Prescriptions.Add(model.Prescription);
                 try
@@ -80,6 +81,10 @@ namespace saman.Controllers
                 var prescList = db.Prescriptions.AsQueryable().ToList().OrderBy(p => p.Id).Take(5);
                 return View("_Prescriptions", prescList);
 
+            }
+            else
+            {
+             string a =    ModelState.GetErrors();
             }
 
             return View();
@@ -230,49 +235,49 @@ namespace saman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(PrescriptionViewModel model)
         {
+            return null;
+            //var result = db.Prescriptions.AsQueryable();
+            //if (model != null)
+            //{
+            //    if (!string.IsNullOrWhiteSpace(model.Prescription.PersonId))
+            //        result = result.Where(x => x.PersonId.Contains(model.Prescription.PersonId));
+            //    if (!string.IsNullOrWhiteSpace(model.Prescription.Person.Name))
+            //        result = result.Where(x => x.Person.Name.Contains(model.Person.Name));
 
-            var result = db.Prescriptions.AsQueryable();
-            if (model != null)
-            {
-                if (!string.IsNullOrWhiteSpace(model.Prescription.PersonId))
-                    result = result.Where(x => x.PersonId.Contains(model.Prescription.PersonId));
-                if (!string.IsNullOrWhiteSpace(model.Prescription.Person.Name))
-                    result = result.Where(x => x.Person.Name.Contains(model.Person.Name));
+            //    if (!string.IsNullOrWhiteSpace(model.Prescription.Person.LName))
+            //        result = result.Where(x => x.Person.LName.Contains(model.Person.LName));
+            //    if (!string.IsNullOrWhiteSpace(model.Prescription.Person.FatherName))
+            //        result = result.Where(x => x.Person.LName.Contains(model.Prescription.Person.FatherName));
 
-                if (!string.IsNullOrWhiteSpace(model.Prescription.Person.LName))
-                    result = result.Where(x => x.Person.LName.Contains(model.Person.LName));
-                if (!string.IsNullOrWhiteSpace(model.Prescription.Person.FatherName))
-                    result = result.Where(x => x.Person.LName.Contains(model.Prescription.Person.FatherName));
+            //    if (!string.IsNullOrWhiteSpace(model.SearchModel.PrescFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.PrescToDate))
+            //    {
+            //        result = result.Where(x => x.Date.CompareTo(model.SearchModel.PrescFromDate) >= 0);
+            //        result = result.Where(x => x.Date.CompareTo(model.SearchModel.PrescToDate) <= 0);
+            //    }
 
-                if (!string.IsNullOrWhiteSpace(model.SearchModel.PrescFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.PrescToDate))
-                {
-                    result = result.Where(x => x.Date.CompareTo(model.SearchModel.PrescFromDate) >= 0);
-                    result = result.Where(x => x.Date.CompareTo(model.SearchModel.PrescToDate) <= 0);
-                }
+            //    if (!string.IsNullOrWhiteSpace(model.SearchModel.SentFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.SentToDate))
+            //    {
+            //        result = result.Where(x => x.SentDate.CompareTo(model.SearchModel.SentFromDate) >= 0);
+            //        result = result.Where(x => x.SentDate.CompareTo(model.SearchModel.SentToDate) <= 0);
+            //    }
 
-                if (!string.IsNullOrWhiteSpace(model.SearchModel.SentFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.SentToDate))
-                {
-                    result = result.Where(x => x.SentDate.CompareTo(model.SearchModel.SentFromDate) >= 0);
-                    result = result.Where(x => x.SentDate.CompareTo(model.SearchModel.SentToDate) <= 0);
-                }
+            //    if (model.Prescription.Payable != 0)
+            //    {
+            //        result = result.Where(x => x.Payable.ToString().Contains(model.Prescription.Payable.ToString()));
+            //    }
 
-                if (model.Prescription.Payable != 0)
-                {
-                    result = result.Where(x => x.Payable.ToString().Contains(model.Prescription.Payable.ToString()));
-                }
-
-                if (model.Prescription.Price != 0)
-                {
-                    result = result.Where(x => x.Price.ToString().Contains(model.Prescription.Price.ToString()));
-                }
+            //    if (model.Prescription.Price != 0)
+            //    {
+            //        result = result.Where(x => x.Price.ToString().Contains(model.Prescription.Price.ToString()));
+            //    }
 
 
-                return PartialView("_Prescriptions", result);
-            }
-            else
-            {
-                return View();
-            }
+            //    return PartialView("_Prescriptions", result);
+            //}
+            //else
+            //{
+            //    return View();
+            //}
         }
 
     }

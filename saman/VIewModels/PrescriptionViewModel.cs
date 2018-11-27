@@ -9,8 +9,7 @@ namespace saman.VIewModels
         public Prescription Prescription { get; set; }
         public IEnumerable<Prescription> Prescriptions { get; set; }
         public IEnumerable<TreatmentType> Treatments { get; set; }
-        public TreatmentType Treatment { get; set; }
-        public Person Person { get; set; }
-        public PrescriptionSearchModel SearchModel { get; set; }
+        public TreatmentType Treatment { get; set; }      
+        public PrescriptionPersonModel Person { get; set; }
     }
 }

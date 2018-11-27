@@ -268,6 +268,7 @@
     <Compile Include="Models\EntityModels\PersonMadrakMetaData.cs" />
     <Compile Include="Models\EntityModels\PersonMetaData.cs" />
     <Compile Include="Models\EntityModels\PrescriptionMetaData.cs" />
+    <Compile Include="Models\EntityModels\PrescriptionPersonModel.cs" />
     <Compile Include="Models\EntityModels\PrescriptionSearchModel.cs" />
     <Compile Include="Models\EntityModels\RetirementTypeMetaData.cs" />
     <Compile Include="Models\EntityModels\TreatmentTypeMetaData.cs" />

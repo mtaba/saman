@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SamanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SamanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Banks">
           <Key>
             <PropertyRef Name="Id" />
@@ -121,6 +121,7 @@
           <Property Name="ShebaAcc" Type="nvarchar" MaxLength="100" />
           <Property Name="DeathDate" Type="char" MaxLength="10" />
           <Property Name="ParentId" Type="char" MaxLength="10" />
+          <Property Name="Isargar" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Places">
           <Key>
@@ -142,7 +143,7 @@
           <Property Name="Payable" Type="bigint" Nullable="false" />
           <Property Name="SentDate" Type="char" MaxLength="10" />
           <Property Name="Period" Type="smallint" />
-          <Property Name="TreatmentType" Type="int" Nullable="false" />
+          <Property Name="TreatmentTypeId" Type="int" Nullable="false" />
           <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Retirees">
@@ -284,7 +285,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Prescription">
-              <PropertyRef Name="TreatmentType" />
+              <PropertyRef Name="TreatmentTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -377,7 +378,8 @@
             <End Role="Retirees" EntitySet="Retirees" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SamanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -509,6 +511,7 @@
           <Property Name="ShebaAcc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DeathDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="ParentId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Isargar" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="HealthInsurances" Relationship="Self.FK_HealthInsurances_Persons" FromRole="Persons" ToRole="HealthInsurances" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Persons" FromRole="Persons" ToRole="Jobs" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Persons" FromRole="Persons" ToRole="Payments" />
@@ -536,10 +539,10 @@
           <Property Name="Payable" Type="Int64" Nullable="false" />
           <Property Name="SentDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Period" Type="Int16" />
-          <Property Name="TreatmentType" Type="Int32" Nullable="false" />
+          <Property Name="TreatmentTypeId" Type="Int32" Nullable="false" />
           <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Prescription_Persons" FromRole="Prescription" ToRole="Persons" />
-          <NavigationProperty Name="TreatmentType1" Relationship="Self.FK_Prescription_TreatmentType" FromRole="Prescription" ToRole="TreatmentType" />
+          <NavigationProperty Name="TreatmentType" Relationship="Self.FK_Prescription_TreatmentType" FromRole="Prescription" ToRole="TreatmentType" />
         </EntityType>
         <EntityType Name="Retiree">
           <Key>
@@ -696,7 +699,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Prescription">
-              <PropertyRef Name="TreatmentType" />
+              <PropertyRef Name="TreatmentTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -907,6 +910,7 @@
                 <ScalarProperty Name="ShebaAcc" ColumnName="ShebaAcc" />
                 <ScalarProperty Name="DeathDate" ColumnName="DeathDate" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Isargar" ColumnName="Isargar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -930,7 +934,7 @@
                 <ScalarProperty Name="Payable" ColumnName="Payable" />
                 <ScalarProperty Name="SentDate" ColumnName="SentDate" />
                 <ScalarProperty Name="Period" ColumnName="Period" />
-                <ScalarProperty Name="TreatmentType" ColumnName="TreatmentType" />
+                <ScalarProperty Name="TreatmentTypeId" ColumnName="TreatmentTypeId" />
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -20,10 +20,10 @@ namespace saman.Models.DomainModels
         public long Payable { get; set; }
         public string SentDate { get; set; }
         public Nullable<short> Period { get; set; }
-        public int TreatmentType { get; set; }
+        public int TreatmentTypeId { get; set; }
         public string PersonId { get; set; }
     
         public virtual Person Person { get; set; }
-        public virtual TreatmentType TreatmentType1 { get; set; }
+        public virtual TreatmentType TreatmentType { get; set; }
     }
 }

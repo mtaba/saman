@@ -43,6 +43,7 @@ namespace saman.Models.DomainModels
         public string ShebaAcc { get; set; }
         public string DeathDate { get; set; }
         public string ParentId { get; set; }
+        public bool Isargar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HealthInsurance> HealthInsurances { get; set; }

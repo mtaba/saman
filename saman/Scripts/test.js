@@ -1,6 +1,6 @@
 ﻿// JavaScript source code
 function searchPerson() {
-    var personalCode = $("#Prescription_Person_PesonalCode").val();
+    var personalCode = $("#Person_PersonalCode").val();
    
     if (personalCode.length == 5) {
         $.ajax({
@@ -14,12 +14,12 @@ function searchPerson() {
 
                     if (data.length == 1) {
 
-                        $("#Prescription_Person_Name").val(data[0].Name);
-                        $("#Prescription_Person_Name").text(data[0].Name);
-                        $("#Prescription_Person_LName").val(data[0].LName);
-                        $("#Prescription_Person_LName").text(data[0].LName);
-                        $("#Prescription_PersonId").val(data[0].CodeMelli);
-                        $("#Prescription_PersonId").text(data[0].CodeMelli);
+                        $("#Person_Name").val(data[0].Name);
+                        $("#Person_Name").text(data[0].Name);
+                        $("#Person_Family").val(data[0].LName);
+                        $("#Person_Family").text(data[0].LName);
+                        $("#Person_CodeMelli").val(data[0].CodeMelli);
+                        $("#Person_CodeMelli").text(data[0].CodeMelli);
                         //  html = "";
                         //  $("#Personlist").html(html);
                     }

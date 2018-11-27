@@ -7,10 +7,13 @@
 @section styles{
     @Styles.Render("~/Styles/calendar")
 }
-<div class="row">
-    <div class="col-md-12">
-         @using (Ajax.BeginForm("Create", "Prescriptions", new AjaxOptions { UpdateTargetId = "Presclist", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
-        {
+
+
+@using (Ajax.BeginForm("Create", "Prescriptions", new AjaxOptions { UpdateTargetId = "Presclist", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+{
+
+    <div class="row">
+        <div class="col-md-12">
             @Html.AntiForgeryToken()
             <div class="form-horizontal box box-primary">
                 <div class="box-body">
@@ -21,107 +24,110 @@
 
                     <div class="form-group">
 
-                        @Html.LabelFor(model => model.Prescription.Person.PesonalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Person.PersonalCode, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.Person.PesonalCode, new { htmlAttributes = new { @class = "form-control" , @onkeyup = "searchPerson()" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.Person.Person_Madraks, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Person.PersonalCode, new { htmlAttributes = new { @class = "form-control", @onkeyup = "searchPerson()" } })
+                            @Html.ValidationMessageFor(model => model.Person.PersonalCode, "", new { @class = "text-danger" })
                         </div>
 
-                        @Html.LabelFor(model => model.Prescription.PersonId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Person.CodeMelli, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.PersonId, new { htmlAttributes = new { @class = "form-control" , disabled = "disabled", @readonly = "readonly" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.PersonId, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Person.CodeMelli, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Person.CodeMelli, "", new { @class = "text-danger" })
                         </div>
 
-                     
+
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Prescription.Person.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Person.Name, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.Person.Name, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.Person.Name, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Person.Name, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Person.Name, "", new { @class = "text-danger" })
                         </div>
 
-                        @Html.LabelFor(model => model.Prescription.Person.LName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.Person.Family, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.Person.LName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.Person.LName, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.Person.Family, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Person.Family, "", new { @class = "text-danger" })
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="form-horizontal box box-primary">
+                    <div class="box-body">
+                        <hr />
+                        <div class="box-heade">
+                            <h4 class="box-title">اطلاعات نسخه</h4>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prescription.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="input-group col-md-4 col-lg-4">
+
+                                @Html.TextBoxFor(model => model.Prescription.Date, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#Prescription_Date", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
+                                @Html.ValidationMessageFor(model => model.Prescription.Date, "", new { @class = "text-danger" })
+                            </div>
+
+                            @Html.LabelFor(model => model.Prescription.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Prescription.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Prescription.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prescription.Payable, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Prescription.Payable, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Prescription.Payable, "", new { @class = "text-danger" })
+                            </div>
+
+                            @Html.LabelFor(model => model.Prescription.SentDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.Prescription.SentDate, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#Prescription_SentDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
+                                @Html.ValidationMessageFor(model => model.Prescription.SentDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Prescription.Period, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Prescription.Period, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Prescription.Period, "", new { @class = "text-danger" })
+                            </div>
+
+                            @Html.LabelFor(model => model.Prescription.TreatmentType, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @*    @Html.DropDownListFor(model =>model.Prescription.TreatmentType,  new SelectList(Model.Treatments, "Id", "Value"), new { htmlAttributes =  new { @class = "form-control" } })*@
+                                @Html.DropDownListFor(model => model.Prescription.TreatmentTypeId, new SelectList(Model.Treatments, "Id", "Value"), new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Prescription.TreatmentTypeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="ثبت" class="btn btn-default" />
+                            </div>
                         </div>
 
                     </div>
                 </div>
+
             </div>
-            <div class="form-horizontal box box-primary">
-                <div class="box-body">
-                    <hr />
-                    <div class="box-heade">
-                        <h4 class="box-title">اطلاعات نسخه</h4>
-                    </div>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Prescription.Date, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="input-group col-md-4 col-lg-4">
-
-                            @Html.TextBoxFor(model => model.Prescription.Date, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#Prescription_Date", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
-                            @Html.ValidationMessageFor(model => model.Prescription.Date, "", new { @class = "text-danger" })
-                        </div>
-
-                        @Html.LabelFor(model => model.Prescription.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.Price, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.Price, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Prescription.Payable, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.Payable, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.Payable, "", new { @class = "text-danger" })
-                        </div>
-
-                        @Html.LabelFor(model => model.Prescription.SentDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.TextBoxFor(model => model.Prescription.SentDate, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#Prescription_SentDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
-                            @Html.ValidationMessageFor(model => model.Prescription.SentDate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Prescription.Period, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.Prescription.Period, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Prescription.Period, "", new { @class = "text-danger" })
-                        </div>
-
-                        @Html.LabelFor(model => model.Prescription.TreatmentType, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-4">
-                            @Html.DropDownListFor(model =>model.Prescription.TreatmentType,new SelectList(Model.Treatments, "Id", "Value"), htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Prescription.TreatmentType, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="ثبت" class="btn btn-default" />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        </div>
+    </div>
+}
+<div class="row" id="Presclist">
+    <div class="col-lg-12">
+        @if (Model.Prescriptions != null)
+        {
+            @Html.Partial("_Prescriptions", Model.Prescriptions)
         }
     </div>
-</div>
-
-
-<div id="Presclist">
-    @if (Model.Prescriptions != null)
-    {
-        @Html.Partial("_Prescriptions", Model.Prescriptions)
-    }
 
 </div>
 
@@ -129,8 +135,7 @@
     @Scripts.Render("~/Scripts/calendar")
     @Scripts.Render("~/bundles/jqueryval")
     <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/test.js")" type="text/javascript"></script>
-
+    <script src="@Url.Content("~/Scripts/test.js")" type="text/javascript"></script>
 }
 
 

@@ -89,6 +89,10 @@ namespace saman.Models.EntityModels
         [Display(Name = "شماره شبا")]
         public string ShebaAcc { get; set; }
 
+        [DisplayName("ایثارگر")]
+        [Display(Name = "ایثارگر")]
+        public string Isargar { get; set; }
+
         [StringLength(10, ErrorMessage = "طول کد پرسنلی حداکثر 10 می تواند باشد")]
         [Display(Name = "کد پرسنلی")]
         public string PesonalCode { get; set; }

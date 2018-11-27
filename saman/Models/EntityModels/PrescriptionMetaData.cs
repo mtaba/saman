@@ -40,15 +40,11 @@ namespace saman.Models.EntityModels
 
         [DisplayName("نوع درمان")]
         [Display(Name = "نوع درمان")]
-        public int TreatmentType { get; set; }
+        public int TreatmentTypeId { get; set; }
 
 
-        [Required(ErrorMessage = "کد ملی را واردنمایید", AllowEmptyStrings = false)]
-        [DisplayName("کد ملی")]
-        [Display(Name = "کد ملی")]
-        [RegularExpression(@"^\d{10}$", ErrorMessage = "کد ملی را بدرستی وارد کنید")]
-        [CodeMelli("لطفا کد ملی را بدرستی وارد کنید")]
-        public string PersonId { get; set; }
+     
+     
 
     }
 }

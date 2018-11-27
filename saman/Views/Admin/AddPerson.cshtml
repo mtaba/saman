@@ -26,9 +26,9 @@
                             @Html.EditorFor(model => model.Person.Name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.Name, "", new { @class = "text-danger" })
                         </div>
-                 
 
-                  
+
+
                         @Html.LabelFor(model => model.Person.LName, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
                             @Html.EditorFor(model => model.Person.LName, new { htmlAttributes = new { @class = "form-control" } })
@@ -42,8 +42,8 @@
                             @Html.EditorFor(model => model.Person.IdentityNo, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.IdentityNo, "", new { @class = "text-danger" })
                         </div>
-                    
-                
+
+
                         @Html.LabelFor(model => model.Person.SodurPlace, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
                             @Html.EditorFor(model => model.Person.SodurPlace, new { htmlAttributes = new { @class = "form-control" } })
@@ -57,9 +57,9 @@
                             @Html.EditorFor(model => model.Person.FatherName, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.FatherName, "", new { @class = "text-danger" })
                         </div>
-                    
 
-                     
+
+
                         @Html.LabelFor(model => model.Person.CodeMelli, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
                             @Html.EditorFor(model => model.Person.CodeMelli, new { htmlAttributes = new { @class = "form-control" } })
@@ -73,8 +73,8 @@
                             @Html.EditorFor(model => model.Person.BirthDay, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.BirthDay, "", new { @class = "text-danger" })
                         </div>
-                     
-                    
+
+
                         @Html.LabelFor(model => model.Person.BirthMonth, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
                             @Html.EditorFor(model => model.Person.BirthMonth, new { htmlAttributes = new { @class = "form-control" } })
@@ -87,34 +87,34 @@
                             @Html.EditorFor(model => model.Person.BirthYear, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.BirthYear, "", new { @class = "text-danger" })
                         </div>
-                   
-                    
+
+
                         @Html.LabelFor(model => model.Person.Jens, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
                             <div class="checkbox">
-                            @Html.DropDownListFor(model => model.Person.Jens, new[] { new SelectListItem { Text = "مرد", Value = "26" } , new SelectListItem { Text = "زن", Value = "27" } }, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Person.Jens, "", new { @class = "text-danger" })
-                        </div>
-                       </div>
-                    </div>
-                    
-                <div class="form-group">
-                            @Html.LabelFor(model => model.Person.Nesbat, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                <div class="checkbox">
-                                    @Html.DropDownListFor(model => model.Person.Nesbat, new[] { new SelectListItem { Text = "بازنشسته", Value = "" }, new SelectListItem { Text = "همسر", Value = "12" } , new SelectListItem { Text = "دختر", Value = "8" } ,  new SelectListItem { Text = "پسر", Value = "7" }, new SelectListItem { Text = "مادر", Value = "6" } }, new { htmlAttributes = new { @class = "form-control" } })    
-                                    @Html.ValidationMessageFor(model => model.Person.Nesbat, "", new { @class = "text-danger" })
-                                </div>
+                                @Html.DropDownListFor(model => model.Person.Jens, new[] { new SelectListItem { Text = "مرد", Value = "26" }, new SelectListItem { Text = "زن", Value = "27" } }, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Person.Jens, "", new { @class = "text-danger" })
                             </div>
-                   
+                        </div>
+                    </div>
 
-                  
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.Nesbat, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                @Html.DropDownListFor(model => model.Person.Nesbat, new[] { new SelectListItem { Text = "بازنشسته", Value = "" }, new SelectListItem { Text = "همسر", Value = "12" }, new SelectListItem { Text = "دختر", Value = "8" }, new SelectListItem { Text = "پسر", Value = "7" }, new SelectListItem { Text = "مادر", Value = "6" } }, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Person.Nesbat, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
                         @Html.LabelFor(model => model.Person.ParentId, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            
-                                @Html.EditorFor(model => model.Person.ParentId, new { htmlAttributes = new { @class = "form-control" } })  
-                                @Html.ValidationMessageFor(model => model.Person.ParentId, "", new { @class = "text-danger" })
-                            
+
+                            @Html.EditorFor(model => model.Person.ParentId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.ParentId, "", new { @class = "text-danger" })
+
                         </div>
                     </div>
 
@@ -124,25 +124,32 @@
                             @Html.EditorFor(model => model.Person.PesonalCode, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.PesonalCode, "", new { @class = "text-danger" })
                         </div>
-                    
-
-                       
-                            @Html.LabelFor(model => model.Person.DeathDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.EditorFor(model => model.Person.DeathDate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Person.DeathDate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
 
 
-                     
-
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-9">
-                                <input type="submit" value="افزودن" class="btn btn-default" />
-                            </div>
+                        @Html.LabelFor(model => model.Person.Isargar, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Person.Jens, new[] { new SelectListItem { Text = "خیر", Value = "0" }, new SelectListItem { Text = "بله", Value = "1" } }, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.Isargar, "", new { @class = "text-danger" })
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Person.DeathDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Person.DeathDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.DeathDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-9">
+                            <input type="submit" value="افزودن" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
 
             }
                 </div>
