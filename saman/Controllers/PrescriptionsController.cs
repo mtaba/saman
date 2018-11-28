@@ -12,6 +12,15 @@ using System.Collections.Generic;
 
 namespace saman.Controllers
 {
+    public class PersonModel
+    {
+        public string Name { get; set; }
+        public string LName { get; set; }
+        public string PesonalCode { get; set; }
+        public string CodeMelli { get; set; }
+
+    }
+
     [Authorize]
     public class PrescriptionsController : Controller
     {
@@ -24,10 +33,10 @@ namespace saman.Controllers
         {
             var model = new VIewModels.PrescriptionViewModel();
 
-            var prescriptions = db.Prescriptions.Include(p => p.Person).Include(t=>t.TreatmentType).Where(p => p.PersonId == Id);
+            var prescriptions = db.Prescriptions.Include(p => p.Person).Include(t => t.TreatmentType).Where(p => p.PersonId == Id);
             model.Prescriptions = prescriptions.ToList();
 
-           //model.Treatments = db.TreatmentTypes.ToList();
+            //model.Treatments = db.TreatmentTypes.ToList();
             return View(model);
         }
 
@@ -53,7 +62,7 @@ namespace saman.Controllers
         {
             PrescriptionViewModel model = new PrescriptionViewModel();
             model.Treatments = db.TreatmentTypes.AsQueryable().ToList();
-            model.Prescriptions = db.Prescriptions.AsQueryable().ToList().OrderBy(p => p.Id).Take(5);
+            model.Prescriptions = db.Prescriptions.AsQueryable().ToList().OrderByDescending(p => p.Id).Take(5);
             return View(model);
         }
 
@@ -65,14 +74,14 @@ namespace saman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PrescriptionViewModel model)
         {
-            if(model.Person.CodeMelli == null)
+            if (model.Person.CodeMelli == null)
             {
                 return View("Create");
             }
             model.Prescription.PersonId = model.Person.CodeMelli;
             if (ModelState.IsValid)
             {
-                
+
 
                 db.Prescriptions.Add(model.Prescription);
                 try
@@ -83,19 +92,28 @@ namespace saman.Controllers
                 {
                     string a = e.Message;
                 }
-                var prescList = db.Prescriptions.AsQueryable().ToList().OrderBy(p => p.Id).Take(5);
+                db.Dispose();
+
+                db = new SamanEntities();
+
+
+                var prescList = db.Prescriptions.AsQueryable().ToList().OrderByDescending(p => p.Id).Take(10);
+
+                //  db.Prescriptions.AsQueryable().ToList().OrderByDescending(p => p.Id).Take(5);
+
+
                 return View("_Prescriptions", prescList);
 
             }
             else
             {
-             string a =    ModelState.GetErrors();
+                string a = ModelState.GetErrors();
             }
 
             return View();
         }
 
-      
+
         // GET: Prescriptions/Edit/5
         public ActionResult Edit(int id)
         {
@@ -159,18 +177,18 @@ namespace saman.Controllers
 
         // POST: Prescriptions/Delete/5
         [HttpPost]
-      
+
         public ActionResult DeleteConfirmed(int id)
         {
             Prescription prescription = db.Prescriptions.Find(id);
             db.Prescriptions.Remove(prescription);
             db.SaveChanges();
             //  return PartialView("_Prescriptions");
-          /*  return Json(new
-            {
-                Success = true
-            
-            }); */
+            /*  return Json(new
+              {
+                  Success = true
+
+              }); */
             return RedirectToAction("Search");
         }
 
@@ -190,13 +208,19 @@ namespace saman.Controllers
         {
             PersonRepository blPerson = new PersonRepository();
 
+            var model = new Person();
 
-            var model = blPerson.Where(p => p.PesonalCode == PersonalCode);
+            model = blPerson.Where(p => p.PesonalCode == PersonalCode).Single();
 
-            
+            var newModel = new PersonModel();
+            newModel.CodeMelli = model.CodeMelli.Trim();
+            newModel.PesonalCode = model.PesonalCode.Trim();
+            newModel.Name = model.Name.Trim();
+            newModel.LName = model.LName.Trim();
+
             try
             {
-                string html = JsonConvert.SerializeObject(model, Formatting.None,
+                string html = JsonConvert.SerializeObject(newModel, Formatting.None,
                       new JsonSerializerSettings()
                       {
                           ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -232,8 +256,6 @@ namespace saman.Controllers
             return View(model);
 
         }
-
-
 
         [HttpPost]
         [AjaxOnly]

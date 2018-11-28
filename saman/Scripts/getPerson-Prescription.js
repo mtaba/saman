@@ -1,7 +1,6 @@
-﻿// JavaScript source code
-function searchPerson() {
+﻿function searchPerson() {
     var personalCode = $("#Person_PersonalCode").val();
-   
+
     if (personalCode.length == 5) {
         $.ajax({
             url: 'GetPerson',
@@ -11,23 +10,18 @@ function searchPerson() {
             success: function (result) {
                 if (result.Success) {
                     var data = JSON.parse(result.Html)
-
-                    if (data.length == 1) {
-
-                        $("#Person_Name").val(data[0].Name);
-                        $("#Person_Name").text(data[0].Name);
-                        $("#Person_Family").val(data[0].LName);
-                        $("#Person_Family").text(data[0].LName);
-                        $("#Person_CodeMelli").val(data[0].CodeMelli);
-                        $("#Person_CodeMelli").text(data[0].CodeMelli);
-                        //  html = "";
-                        //  $("#Personlist").html(html);
-                    }
+                    $("#Person_Name").val(data.Name);
+                    $("#Person_Name").text(data.Name);
+                    $("#Person_Family").val(data.LName);
+                    $("#Person_Family").text(data.LName);
+                    $("#Person_CodeMelli").val(data.CodeMelli);
+                    $("#Person_CodeMelli").text(data.CodeMelli);
                 }
             },
             error: function (result) {
+                console.log(result.error)
 
             }
         })
-    } // #if(personalCode.length !=0)
+    } 
 }
