@@ -65,6 +65,11 @@ namespace saman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PrescriptionViewModel model)
         {
+            if(model.Person.CodeMelli == null)
+            {
+                return View("Create");
+            }
+            model.Prescription.PersonId = model.Person.CodeMelli;
             if (ModelState.IsValid)
             {
                 
