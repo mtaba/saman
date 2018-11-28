@@ -67,25 +67,29 @@
                             <td>
                                 @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }) |
                                 @Html.ActionLink("جزئیات", "Details", new { id = item.Id }) |
-                                                          
-                                <a href="#" data-toggle="modal" data-target="#confirm-delete">حذف</a>
+                                @Html.ActionLink("حذف", "DeleteConfirmed", new { id = item.Id }, new { @class = "", id = item.Id, onclick = "return confirm('جهت حذف مطمئن هستید ؟')" })
 
-                                <div class="modal fade" id="confirm-delete" tabindex="-1"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                حذف نسخه
-                                            </div>
-                                            <div class="modal-body">
-                                               آیا از حذف این نسخه مطمئن هستید؟
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">انصراف</button>
-                                                <a class="btn btn-danger btn-ok" onclick="Del(@item.Id)">حذف</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+
+                                <!--    <a class="DelTreatment" href="/TreatmentTypes/Delete/6" onclick="return confirm('جهت حذف مطمئن هستید ؟')" treatid="6">حذف</a>                       -->
+                            @*    <a href="/Prescriptions/DeleteConfirmed/@item.Id" data-toggle="modal" data-target="#confirm-delete">حذف</a>*@
+
+                                @*<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        حذف نسخه
+                    </div>
+                    <div class="modal-body">
+                        آیا از حذف این نسخه مطمئن هستید؟
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">انصراف</button>
+                        <a class="btn btn-danger btn-ok" >حذف</a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
 
 
                             </td>

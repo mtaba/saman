@@ -176,20 +176,41 @@ namespace saman.Controllers
         }
 
         // POST: Prescriptions/Delete/5
-        [HttpPost]
+        [HttpGet]
 
         public ActionResult DeleteConfirmed(int id)
         {
             Prescription prescription = db.Prescriptions.Find(id);
             db.Prescriptions.Remove(prescription);
             db.SaveChanges();
-            //  return PartialView("_Prescriptions");
-            /*  return Json(new
-              {
-                  Success = true
 
-              }); */
-            return RedirectToAction("Search");
+            return RedirectToAction("Create");
+            //var newModel =db.Prescriptions.AsQueryable().ToList().OrderByDescending(p => p.Id).Take(5);
+            //try
+            //{
+            //    string html = JsonConvert.SerializeObject(newModel, Formatting.None,
+            //         new JsonSerializerSettings()
+            //         {
+            //             ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //         });
+
+            //    return Json(new
+            //    {
+            //        Success = true,
+            //        Html = html
+            //    });
+
+            //}
+            //catch (JsonException e)
+            //{
+            //    var a = e.Message;
+                
+            //        return Json(new
+            //    {
+            //        Success = false,
+            //        Html = ""
+            //    });
+            //}
         }
 
         protected override void Dispose(bool disposing)
