@@ -231,7 +231,13 @@ namespace saman.Controllers
 
             var model = new Person();
 
-            model = blPerson.Where(p => p.PesonalCode == PersonalCode).Single();
+            var temp = blPerson.Where(p => p.PesonalCode == PersonalCode);
+
+
+            if (temp.Count() == 0) return View();
+
+                model = temp.Single();
+        
 
             var newModel = new PersonModel();
             newModel.CodeMelli = model.CodeMelli.Trim();

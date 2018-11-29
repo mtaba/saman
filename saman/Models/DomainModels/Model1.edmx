@@ -89,6 +89,7 @@
           <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="StartDate" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="EndDate" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Cash" Type="bigint" />
         </EntityType>
         <EntityType Name="Person-Madraks">
           <Key>
@@ -476,6 +477,7 @@
           <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheques_Payments" FromRole="Payments" ToRole="Cheques" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Payments_Persons" FromRole="Payments" ToRole="Persons" />
+          <Property Name="Cash" Type="Int64" />
         </EntityType>
         <EntityType Name="Person_Madraks">
           <Key>
@@ -868,6 +870,7 @@
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="SamanModel.Payment">
               <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
                 <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />

@@ -26,69 +26,84 @@
                 </div>
                 <hr />
                 <div class="box-body">
-                    <div class="row">              
-                            <div class="input-group col-md-4 col-lg-4">                               
-                                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#MembershipPayment_StartDate" data-englishnumber = "true" data-groupid="group1"    data-enabletimepicker="false" data-placement="left">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="input-group col-md-4 col-lg-4 col-lg-offset-1">
+                                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#MembershipPayment_StartDate" data-englishnumber="true" data-groupid="group1" data-enabletimepicker="false" data-placement="left">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </div>
-                           @*    <input type="text" class="form-control col-md-6" id="StartDate" name="StartDate" placeholder="از تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#StartDate" data-groupid="group1"  data-enabletimepicker="false"  data-placement="left"  data-disablebeforetoday="false"/>*@
-                              @Html.TextBoxFor(model => model.MembershipPayment.StartDate ,  htmlAttributes: new { @class = "form-control", placeholder = "از تاریخ", data_englishnumber = "true",  data_mddatetimepicker = "true" ,data_trigger = "click", data_targetselector = "#MembershipPayment_StartDate", data_groupid = "group1" , data_enabletimepicker = "false" , data_placement = "left" , data_disablebeforetoday = "false" }  )                        
-                            @Html.ValidationMessageFor(model=>model.MembershipPayment.StartDate,"",new { @class= "text-danger" })
-                            </div >
+                                @Html.TextBoxFor(model => model.MembershipPayment.StartDate, htmlAttributes: new { @class = "form-control", placeholder = "از تاریخ", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#MembershipPayment_StartDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "left", data_disablebeforetoday = "false" })
+                                @Html.ValidationMessageFor(model => model.MembershipPayment.StartDate, "", new { @class = "text-danger" })
+                            </div>
 
 
-                            <div class="input-group col-md-4 col-lg-4">
-                                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-englishnumber = "true" data-targetselector="#MembershipPayment_EndDate" data-groupid="group1" data-todate="true"  data-enabletimepicker="false" data-placement="left">
+                            <div class="input-group col-md-4 col-lg-4 col-lg-offset-2">
+                                <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-englishnumber="true" data-targetselector="#MembershipPayment_EndDate" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="left">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </div>
-                               @* <input type = "text" class="form-control" id="toDate1" placeholder="تا تاریخ" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#toDate1" data-groupid="group1" data-todate="true" data-enabletimepicker="false" data-placement="right" />*@
                                 @Html.TextBoxFor(model => model.MembershipPayment.EndDate, htmlAttributes: new { @class = "form-control", placeholder = "تا تاریخ", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#MembershipPayment_EndDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "left", data_disablebeforetoday = "false", data_todate = "true" })
                                 @Html.ValidationMessageFor(model => model.MembershipPayment.EndDate, "", new { @class = "text-danger" })
                             </div>
-                            <div class=" col-md-4 col-lg-4">
-                                @Html.LabelFor(model => model.MembershipPayment.Reason, htmlAttributes: new { @class = "control-label col-md-4" })
-                                <div class="col-md-8">
+                            </div>
 
-                                    @Html.DropDownListFor(model => model.MembershipPayment.Reason, new[] { new SelectListItem { Text = "حق عضویت", Value = "0" }, new SelectListItem { Text = "بیمه درمان", Value = "1" } , new SelectListItem { Text = "عمر و حادثه کشوری", Value = "2" } , new SelectListItem { Text = "عمر و حادثه تکمیلی", Value = "3" } }, new { htmlAttributes = new { @class = "form-control" } })
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MembershipPayment.Cash, htmlAttributes: new { @class = "control-label col-md-1" })
+                                <div class="col-md-4">
+                                    @*  @Html.EditorFor(model => model.MembershipPayment.Cash, new { @class = "control-label col-md-12" })*@
+                                    <input class="text-box single-line" style="width:100%" data-val="true" data-val-number="The field پرداخت نقدی must be a number." id="MembershipPayment_Cash" name="MembershipPayment.Cash" type="number" value="">
+                                    @Html.ValidationMessageFor(model => model.MembershipPayment.Cash, "", new { @class = "text-danger" })
+                                </div>
+
+
+                                @Html.LabelFor(model => model.MembershipPayment.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+
+                                    @Html.DropDownListFor(model => model.MembershipPayment.Reason, new[] { new SelectListItem { Text = "حق عضویت", Value = "0" }, new SelectListItem { Text = "بیمه درمان", Value = "1" }, new SelectListItem { Text = "عمر و حادثه کشوری", Value = "2" }, new SelectListItem { Text = "عمر و حادثه تکمیلی", Value = "3" } }, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.MembershipPayment.Reason, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
-                    </div>
+                        </div>
 
-                </div>
+                    </div>
             </div>
 
 
                     <div class="form-horizontal box box-primary">
                         <div class="box-heade">
-                            <h4 class="box-title">جستجوی بازنشسته</h4>
+                            <h4 class="box-title">بازنشسته</h4>
                         </div>
 
                         <hr />
                         <div class="box-body">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
-                                @Html.LabelFor(model => model.Person.CodeMelli, htmlAttributes: new { @class = "control-label col-md-1" })
-                                <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.Person.CodeMelli, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
-                                    @*@Html.EditorFor(model => model.Person.CodeMelli, new { htmlAttributes = new { @class = "form-control" } })*@
-                                    @Html.ValidationMessageFor(model => model.Person.CodeMelli, "", new { @class = "text-danger" })
+
+                                @Html.LabelFor(model => model.Person.PersonalCode, htmlAttributes: new { @class = "control-label col-md-1" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Person.PersonalCode, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
+                                    @Html.ValidationMessageFor(model => model.Person.PersonalCode, "", new { @class = "text-danger" })
                                 </div>
 
+                                @Html.LabelFor(model => model.Person.CodeMelli, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Person.CodeMelli, new { @class = "control-label col-md-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.Person.CodeMelli, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 @Html.LabelFor(model => model.Person.Name, htmlAttributes: new { @class = "control-label col-md-1" })
-                                <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.Person.Name, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Person.Name, new { @class = "control-label col-md-12", @readonly = "readonly" })
                                     @Html.ValidationMessageFor(model => model.Person.Name, "", new { @class = "text-danger" })
                                 </div>
 
-                                @Html.LabelFor(model => model.Person.LName, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-2">
-                                    @Html.TextBoxFor(model => model.Person.LName, new { @class = "control-label col-md-12", @onkeyup = "searchPerson();" })
-                                    @Html.ValidationMessageFor(model => model.Person.LName, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="col-md-2" >
-                                    <button id="clear" onclick="clear()">پاک کردن</button>
+                                @Html.LabelFor(model => model.Person.Family, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    @Html.TextBoxFor(model => model.Person.Family, new { @class = "control-label col-md-12", @readonly = "readonly" })
+                                    @Html.ValidationMessageFor(model => model.Person.Family, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -118,51 +133,31 @@
     <script type="text/javascript">
 
         function searchPerson() {
-            var codeMelli = $("#Person_CodeMelli").val();
-            var personName = $("#Person_Name").val();
-            var personFamily = $("#Person_LName").val();
+            var personalCode = $("#Person_PersonalCode").val();
 
-            $.ajax({
-                url: 'GetPerson',
-                type: 'Post',
-                dataType: 'Json',
-                data: { NationalCode: codeMelli, Name: personName, LName: personFamily },
-                success: function (result) {
-                    if (result.Success) {
-                        var data = JSON.parse(result.Html)
-
-                        var html = '<div class="form-horizontal box box-primary">   <div class="box-heade">  <h4 class="box-title">لیست بازنشستگان</h4>   </div> <hr />   <div class="box-body">   <table class="table"> <tr> <th>نام</th> <th>نام خانوادگی</th> <th>نام پدر</th> <th>کد ملی</th> </tr> ';
-                        for (var i = 0; i < data.length; i++) {
-                            html +=
-
-                                '<tr>' +
-                                   '<td>' + data[i].Name + '</td>' +
-                                   '<td>' + data[i].LName + '</td>' +
-                                   '<td>' + data[i].FatherName + '</td>' +
-                                   '<td>' + data[i].CodeMelli + '</td>' +
-                                '</tr>'
-                            ;
-                        }  //#for
-                        html += '</table></div></div>';
-                        $("#Personlist").html(html);
-
-                        if (data.length == 1) {
-
-                            $("#Person_Name").val(data[0].Name);
-                            $("#Person_Name").text(data[0].Name);
-                            $("#Person_LName").val(data[0].LName);
-                            $("#Person_LName").text(data[0].LName);
-                            $("#Person_CodeMelli").val(data[0].CodeMelli);
-                            $("#Person_CodeMelli").text(data[0].CodeMelli);
-                            html = "";
-                            $("#Personlist").html(html);
+            if (personalCode.length == 5) {
+                $.ajax({
+                    url: '../Prescriptions/GetPerson',
+                    type: 'Post',
+                    dataType: 'Json',
+                    data: { PersonalCode: personalCode },
+                    success: function (result) {
+                        if (result.Success) {
+                            var data = JSON.parse(result.Html)
+                            $("#Person_Name").val(data.Name);
+                            $("#Person_Name").text(data.Name);
+                            $("#Person_Family").val(data.LName);
+                            $("#Person_Family").text(data.LName);
+                            $("#Person_CodeMelli").val(data.CodeMelli);
+                            $("#Person_CodeMelli").text(data.CodeMelli);
                         }
-                    }
-                },
-                error: function (result) {
+                    },
+                    error: function (result) {
+                        console.log(result.error)
 
-                }
-            })
+                    }
+                })
+            } 
         }
 
         $(function (e) {

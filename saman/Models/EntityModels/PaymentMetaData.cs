@@ -30,6 +30,11 @@ namespace saman.Models.EntityModels
         public int Reason { get; set; }
 
 
+       
+        [Display(Name = "پرداخت نقدی")]
+        [DisplayName("پرداخت نقدی")]
+        public Nullable<long> Cash { get; set; }
+
 
 
     }
