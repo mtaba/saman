@@ -283,49 +283,57 @@ namespace saman.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(PrescriptionViewModel model)
         {
-            return null;
-            //var result = db.Prescriptions.AsQueryable();
-            //if (model != null)
-            //{
-            //    if (!string.IsNullOrWhiteSpace(model.Prescription.PersonId))
-            //        result = result.Where(x => x.PersonId.Contains(model.Prescription.PersonId));
-            //    if (!string.IsNullOrWhiteSpace(model.Prescription.Person.Name))
-            //        result = result.Where(x => x.Person.Name.Contains(model.Person.Name));
+            IQueryable<Prescription>  result = db.Prescriptions.AsQueryable();
+            if (model !=null)
+            {
+                
+                if (!string.IsNullOrWhiteSpace(model.Person.PersonalCode))
+                   result = result.Where(p => p.Person.PesonalCode.Contains(model.Person.PersonalCode));
 
-            //    if (!string.IsNullOrWhiteSpace(model.Prescription.Person.LName))
-            //        result = result.Where(x => x.Person.LName.Contains(model.Person.LName));
-            //    if (!string.IsNullOrWhiteSpace(model.Prescription.Person.FatherName))
-            //        result = result.Where(x => x.Person.LName.Contains(model.Prescription.Person.FatherName));
+                if (!string.IsNullOrWhiteSpace(model.Person.Name))
+                   result = result.Where(p => p.Person.Name.Contains(model.Person.Name));
 
-            //    if (!string.IsNullOrWhiteSpace(model.SearchModel.PrescFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.PrescToDate))
-            //    {
-            //        result = result.Where(x => x.Date.CompareTo(model.SearchModel.PrescFromDate) >= 0);
-            //        result = result.Where(x => x.Date.CompareTo(model.SearchModel.PrescToDate) <= 0);
-            //    }
+                if (!string.IsNullOrWhiteSpace(model.Person.Family))
+                    result = result.Where(p => p.Person.LName.Contains(model.Person.Family));
+                if (!string.IsNullOrWhiteSpace(model.Person.CodeMelli))
+                    result = result.Where(p => p.PersonId.Contains(model.Person.CodeMelli));
 
-            //    if (!string.IsNullOrWhiteSpace(model.SearchModel.SentFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.SentToDate))
-            //    {
-            //        result = result.Where(x => x.SentDate.CompareTo(model.SearchModel.SentFromDate) >= 0);
-            //        result = result.Where(x => x.SentDate.CompareTo(model.SearchModel.SentToDate) <= 0);
-            //    }
+                if (!string.IsNullOrWhiteSpace(model.SearchModel.PrescFromDate))
+                {
+                    result = result.Where(p => p.Date.CompareTo(model.SearchModel.PrescFromDate) >= 0);
+                    
+                }
+                if (!string.IsNullOrWhiteSpace(model.SearchModel.PrescToDate))
+                {
+                 result = result.Where(p => p.Date.CompareTo(model.SearchModel.PrescToDate) <= 0);
+                 }
 
-            //    if (model.Prescription.Payable != 0)
-            //    {
-            //        result = result.Where(x => x.Payable.ToString().Contains(model.Prescription.Payable.ToString()));
-            //    }
+                if (!string.IsNullOrWhiteSpace(model.SearchModel.SentFromDate) && !string.IsNullOrWhiteSpace(model.SearchModel.SentToDate))
+                {
+                    result = result.Where(p => p.SentDate.CompareTo(model.SearchModel.SentFromDate) >= 0);
+                    result = result.Where(p => p.SentDate.CompareTo(model.SearchModel.SentToDate) <= 0);
+                }
 
-            //    if (model.Prescription.Price != 0)
-            //    {
-            //        result = result.Where(x => x.Price.ToString().Contains(model.Prescription.Price.ToString()));
-            //    }
+               if (model.Prescription.Payable != 0)
+                {
+                   result = result.Where(x => x.Payable.ToString().Contains(model.Prescription.Payable.ToString()));
+                }
+
+                if (model.Prescription.Price != 0)
+               {
+                    result = result.Where(x => x.Price.ToString().Contains(model.Prescription.Price.ToString()));
+               }
+               
+                 
+              
 
 
-            //    return PartialView("_Prescriptions", result);
-            //}
-            //else
-            //{
-            //    return View();
-            //}
+               return PartialView("_SPrescriptions", result);
+            }
+            else
+            {
+                return View();
+            }
         }
 
     }
