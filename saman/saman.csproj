@@ -523,10 +523,8 @@
     <Content Include="Views\TreatmentTypes\Index.cshtml" />
     <Content Include="Views\TreatmentTypes\_Treatmentlist.cshtml" />
     <Content Include="Views\Prescriptions\Create.cshtml" />
-    <Content Include="Views\Prescriptions\Delete.cshtml" />
     <Content Include="Views\Prescriptions\Details.cshtml" />
     <Content Include="Views\Prescriptions\Edit.cshtml" />
-    <Content Include="Views\Prescriptions\Index.cshtml" />
     <Content Include="Views\Cheques\Create.cshtml" />
     <Content Include="Views\Cheques\Search.cshtml" />
     <Content Include="Views\MembershipFee\Search.cshtml" />
