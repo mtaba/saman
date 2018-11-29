@@ -190,13 +190,19 @@ namespace saman.Controllers
         {
             PersonRepository blPerson = new PersonRepository();
 
+            var model = new Person();
 
-            var model = blPerson.Where(p => p.PesonalCode == PersonalCode);
+            model = blPerson.Where(p => p.PesonalCode == PersonalCode).Single();
 
-            
+            var newModel = new Person();
+            newModel.CodeMelli = model.CodeMelli;
+            newModel.PesonalCode = model.PesonalCode;
+            newModel.LName = model.LName;
+            newModel.Name = model.Name;
+
             try
             {
-                string html = JsonConvert.SerializeObject(model, Formatting.None,
+                string html = JsonConvert.SerializeObject(newModel, Formatting.None,
                       new JsonSerializerSettings()
                       {
                           ReferenceLoopHandling = ReferenceLoopHandling.Ignore

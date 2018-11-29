@@ -11,5 +11,6 @@ namespace saman.VIewModels
         public IEnumerable<TreatmentType> Treatments { get; set; }
         public TreatmentType Treatment { get; set; }      
         public PrescriptionPersonModel Person { get; set; }
+        public PrescriptionSearchModel SearchModel { get; set; }
     }
 }

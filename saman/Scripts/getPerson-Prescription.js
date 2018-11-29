@@ -6,9 +6,10 @@ function searchPerson() {
         $.ajax({
             url: 'GetPerson',
             type: 'Post',
-            dataType: 'Json',
+            dataType: 'json',
             data: { PersonalCode: personalCode },
             success: function (result) {
+               
                 if (result.Success) {
                     var data = JSON.parse(result.Html)
 
@@ -22,10 +23,12 @@ function searchPerson() {
                         $("#Person_CodeMelli").text(data[0].CodeMelli);
                         //  html = "";
                         //  $("#Personlist").html(html);
+                        console.log(data[0].CodeMelli);
                     }
                 }
             },
             error: function (result) {
+                Console.log(result.error);
 
             }
         })
