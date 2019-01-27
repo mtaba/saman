@@ -288,6 +288,23 @@ namespace saman.Controllers
              return PartialView("_Cheques", blCheque.SearchCheques(model.SearchModel));           
         }
 
+
+        [HttpGet]
+        public ActionResult Report()
+        {
+            ChequeViewModel Cheque = new ChequeViewModel();
+
+            return View(Cheque);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult Report(ChequeViewModel model)
+        {
+             return PartialView("_Cheques", blCheque.SearchCheques(model.SearchModel));           
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

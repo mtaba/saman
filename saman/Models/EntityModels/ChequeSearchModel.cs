@@ -24,6 +24,10 @@ namespace saman.Models.EntityModels
         [Display(Name = "شماره حساب")]
         public string AccountNumber { get; set; }
 
+        [DisplayName("وضعیت")]
+        [Display(Name = "وضعیت")]
+        public string Status { get; set; }
+
         [DisplayName("کد پرسنلی")]
         [Display(Name = "کد پرسنلی")]
         public string PersonalCode { get; set; }

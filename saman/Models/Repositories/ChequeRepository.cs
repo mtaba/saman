@@ -136,13 +136,17 @@ namespace saman.Models.Repositories
 
         public IQueryable<DomainModels.Cheque> SearchCheques(EntityModels.ChequeSearchModel SearchModel)
         {
-            var result = db.Cheques.AsQueryable();
+            IQueryable<DomainModels.Cheque> result = db.Cheques.AsQueryable();
             if (SearchModel != null)
             {
                 if (!string.IsNullOrWhiteSpace(SearchModel.ChequeId))
                     result = result.Where(x => x.ChequeId.Contains(SearchModel.ChequeId));
                 if (!string.IsNullOrWhiteSpace(SearchModel.AccountNumber))
                     result = result.Where(x => x.AccountNumber.Contains(SearchModel.AccountNumber));
+
+                // Status
+                if (!string.IsNullOrWhiteSpace(SearchModel.Status) && SearchModel.Status !="-1")   //-1 = all
+                    result = result.Where(x => x.Status.ToString().Equals(SearchModel.Status));
 
                 if (string.IsNullOrWhiteSpace(SearchModel.ToDate) && !string.IsNullOrWhiteSpace(SearchModel.FromDate))
                     result = result.Where(x => x.Date.Equals(SearchModel.FromDate));
@@ -170,6 +174,7 @@ namespace saman.Models.Repositories
             return result;
 
         }
+
         public int Save()
         {
             try
