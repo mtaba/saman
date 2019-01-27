@@ -22,6 +22,7 @@ namespace saman.Models.DomainModels
         public int Reason { get; set; }
         public int PaymentId { get; set; }
         public string AccountNumber { get; set; }
+        public byte Status { get; set; }
     
         public virtual Bank Bank { get; set; }
         public virtual Payment Payment { get; set; }

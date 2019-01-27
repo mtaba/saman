@@ -24,6 +24,7 @@
           <Property Name="Reason" Type="int" Nullable="false" />
           <Property Name="PaymentId" Type="int" Nullable="false" />
           <Property Name="AccountNumber" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Companies">
           <Key>
@@ -89,7 +90,7 @@
           <Property Name="PersonId" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="StartDate" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="EndDate" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Cash" Type="bigint" />
+          <Property Name="Cash" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Person-Madraks">
           <Key>
@@ -405,6 +406,7 @@
           <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Bank" Relationship="Self.FK_Cheques_Banks" FromRole="Cheques" ToRole="Banks" />
           <NavigationProperty Name="Payment" Relationship="Self.FK_Cheques_Payments" FromRole="Cheques" ToRole="Payments" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -477,7 +479,7 @@
           <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheques_Payments" FromRole="Payments" ToRole="Cheques" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Payments_Persons" FromRole="Payments" ToRole="Persons" />
-          <Property Name="Cash" Type="Int64" />
+          <Property Name="Cash" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Person_Madraks">
           <Key>
@@ -798,6 +800,7 @@
           <EntitySetMapping Name="Cheques">
             <EntityTypeMapping TypeName="SamanModel.Cheque">
               <MappingFragment StoreEntitySet="Cheques">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ChequeId" ColumnName="ChequeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

@@ -44,6 +44,10 @@ namespace saman.Models.EntityModels
         [Display(Name = "شماره حساب")]
        
         public string AccountNumber { get; set; }
+
+        [DisplayName("وضعیت")]
+        [Display(Name = "وضعیت")]
+        public byte Status { get; set; }
     }
 }
 
