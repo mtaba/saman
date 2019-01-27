@@ -27,7 +27,7 @@ namespace saman.Models.DomainModels
         public string PersonId { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
-        public Nullable<long> Cash { get; set; }
+        public long Cash { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cheque> Cheques { get; set; }

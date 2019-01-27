@@ -150,7 +150,7 @@ namespace saman.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PaymentId,ChequeId,Price,Description,Date,BankId,Reason,AccountNumber")] Cheque cheque)
+        public ActionResult Edit([Bind(Include = "PaymentId,ChequeId,Price,Description,Date,BankId,Reason,AccountNumber,Status")] Cheque cheque)
         {
             if (ModelState.IsValid)
             {

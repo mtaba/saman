@@ -27,9 +27,9 @@
                                     @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
                                 </div>
-                       
 
-                         
+
+
                                 @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
@@ -39,19 +39,29 @@
 
                             <div class="form-group">
                                 <label class="control-label col-md-2" for="BankId">نام بانک</label>
-                             @*   @Html.LabelFor(model => model.BankId, "BankId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                                @*   @Html.LabelFor(model => model.BankId, "BankId", htmlAttributes: new { @class = "control-label col-md-2" })*@
                                 <div class="col-md-4">
                                     @Html.DropDownList("BankId", null, htmlAttributes: new { @class = "form-control" })
                                     @Html.ValidationMessageFor(model => model.BankId, "", new { @class = "text-danger" })
                                 </div>
-                            
 
 
-                        
+
+
                                 @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
                                     @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-4">
+                                    <div class="checkbox">
+                                        @Html.DropDownListFor(model => model.Status, new[] { new SelectListItem { Text = "ثبت", Value = "0" }, new SelectListItem { Text = "تحویل به بانک", Value = "1" }, new SelectListItem { Text = "وصول شده", Value = "2" }, new SelectListItem { Text = "برگشتی", Value = "3" } }, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
                             @Html.HiddenFor(model => model.PaymentId)
