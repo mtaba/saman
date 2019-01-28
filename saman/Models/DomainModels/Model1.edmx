@@ -124,6 +124,7 @@
           <Property Name="DeathDate" Type="char" MaxLength="10" />
           <Property Name="ParentId" Type="char" MaxLength="10" />
           <Property Name="Isargar" Type="bit" Nullable="false" />
+          <Property Name="RetirementType" Type="smallint" />
         </EntityType>
         <EntityType Name="Places">
           <Key>
@@ -521,6 +522,7 @@
           <NavigationProperty Name="Person_Madraks" Relationship="Self.FK_Person_Madraks_Persons" FromRole="Persons" ToRole="Person_Madraks" />
           <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_Persons" FromRole="Persons" ToRole="Prescription" />
           <NavigationProperty Name="Retirees" Relationship="Self.FK_Retirees_Persons" FromRole="Persons" ToRole="Retirees" />
+          <Property Name="RetirementType" Type="Int16" />
         </EntityType>
         <EntityType Name="Place">
           <Key>
@@ -897,6 +899,7 @@
           <EntitySetMapping Name="Persons">
             <EntityTypeMapping TypeName="SamanModel.Person">
               <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="RetirementType" ColumnName="RetirementType" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LName" ColumnName="LName" />
                 <ScalarProperty Name="PesonalCode" ColumnName="PesonalCode" />
