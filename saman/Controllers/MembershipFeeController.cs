@@ -124,8 +124,23 @@ namespace saman.Controllers
         [AjaxOnly]
         public ActionResult Search(MembershipFeeViewModel model)
         {
-           
             return PartialView("_Payments", blMembership.Search(model.SearchModel));
+        }
+
+        [HttpGet]
+        public ActionResult Report()
+        {
+            MembershipFeeViewModel model = new MembershipFeeViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult Report(MembershipFeeViewModel model)
+        {
+
+            model.SearchModel.Reason = 0; // حق عضویت
+            return PartialView("_Payments", blMembership.Report(model.SearchModel));
         }
     }
 }

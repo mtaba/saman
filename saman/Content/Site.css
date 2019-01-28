@@ -46,3 +46,4 @@ h4 {margin-right:10px;
 h1, h2, h3, h4, h5, h6, p, .login-box, .register-box{
     font-family:'WYekan';
 }
+select{width:100%}

@@ -532,6 +532,7 @@
     <Content Include="Views\Admin\EditSubCompany.cshtml" />
     <Content Include="Views\Prescriptions\_SPrescriptions.cshtml" />
     <Content Include="Views\Cheques\Report.cshtml" />
+    <Content Include="Views\MembershipFee\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

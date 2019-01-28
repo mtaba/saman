@@ -136,6 +136,36 @@ namespace saman.Models.Repositories
             return result;
         }
 
+        public IQueryable<DomainModels.Payment> Report(PaymentSearchModel SearchModel)
+        {
+            IQueryable<DomainModels.Payment> result = db.Payments.AsQueryable();
+            if (SearchModel != null)
+            {
+                if(!string.IsNullOrEmpty(SearchModel.Reason.ToString()))
+                    result = result.Where(x => x.Reason == SearchModel.Reason);
+
+                if (!string.IsNullOrWhiteSpace(SearchModel.Name))
+                    result = result.Where(x => x.Person.Name.Contains(SearchModel.Name));
+
+                if (!string.IsNullOrWhiteSpace(SearchModel.Family))
+                    result = result.Where(x => x.Person.LName.Contains(SearchModel.Family));
+
+                if (!string.IsNullOrWhiteSpace(SearchModel.ToDate) && !string.IsNullOrWhiteSpace(SearchModel.FromDate))
+                {
+                    result = result.Where(x => x.StartDate.CompareTo(SearchModel.FromDate) >= 0);
+                    result = result.Where(x => x.EndDate.CompareTo(SearchModel.ToDate) <= 0);
+                }
+
+                if (!string.IsNullOrWhiteSpace(SearchModel.PersonalCode))
+                    result = result.Where(x => x.Person.PesonalCode.Contains(SearchModel.PersonalCode));
+
+                if (!string.IsNullOrWhiteSpace(SearchModel.PersonId))
+                    result = result.Where(x => x.PersonId.Contains(SearchModel.PersonId));
+            }
+
+            return result;
+        }
+
         public void Dispose()
         {
             Dispose(true);
