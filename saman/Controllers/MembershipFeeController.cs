@@ -134,12 +134,19 @@ namespace saman.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult InsuranceReport()
+        {
+            MembershipFeeViewModel model = new MembershipFeeViewModel();
+            return View(model);
+        }
+
         [HttpPost]
         [AjaxOnly]
         public ActionResult Report(MembershipFeeViewModel model)
         {
 
-            model.SearchModel.Reason = 0; // حق عضویت
+          //  model.SearchModel.Reason = 0; // حق عضویت
             return PartialView("_Payments", blMembership.Report(model.SearchModel));
         }
     }

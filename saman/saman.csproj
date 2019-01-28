@@ -533,6 +533,7 @@
     <Content Include="Views\Prescriptions\_SPrescriptions.cshtml" />
     <Content Include="Views\Cheques\Report.cshtml" />
     <Content Include="Views\MembershipFee\Report.cshtml" />
+    <Content Include="Views\MembershipFee\InsuranceReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
