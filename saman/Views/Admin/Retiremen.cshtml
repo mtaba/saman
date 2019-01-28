@@ -33,9 +33,9 @@
                                     @Html.DisplayFor(modelItem => item.Value)
                                 </td>
                                 <td>
-                                   
-                                    @Html.ActionLink("ویرایش", "EditRetiremen", new { id = item.Id }) |
-                                    @Html.ActionLink("حذف", "DeleteRetiremen", new { id = item.Id })
+
+                                    @Html.ActionLink("ویرایش", "EditRetiremen", new { id = item.Id }) @* |
+        @Html.ActionLink("حذف", "DeleteRetiremen", new { id = item.Id })*@
                                 </td>
                             </tr>
                         }
