@@ -60,7 +60,7 @@
                                 @Html.LabelFor(model => model.MembershipPayment.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-4">
 
-                                    @Html.DropDownListFor(model => model.MembershipPayment.Reason, new[] { new SelectListItem { Text = "حق عضویت", Value = "0" }, new SelectListItem { Text = "بیمه درمان", Value = "1" }, new SelectListItem { Text = "عمر و حادثه کشوری", Value = "2" }, new SelectListItem { Text = "عمر و حادثه تکمیلی", Value = "3" } }, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.DropDownListFor(model => model.MembershipPayment.Reason, new[] { new SelectListItem { Text = "حق عضویت", Value = "0" }, new SelectListItem { Text = "بیمه تکمیلی درمان", Value = "1" }, new SelectListItem { Text = "عمر و حادثه", Value = "2" }, new SelectListItem { Text = "عمر", Value = "3" } }, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.MembershipPayment.Reason, "", new { @class = "text-danger" })
                                 </div>
                             </div>
