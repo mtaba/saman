@@ -97,6 +97,10 @@ namespace saman.Models.EntityModels
         [Display(Name = "کد پرسنلی")]
         public string PesonalCode { get; set; }
 
+        [DisplayName("نوع بازنشستگی")]
+        [Display(Name = "نوع بازنشستگی")]
+        public string RetirementType { get; set; }
+
 
     }
 

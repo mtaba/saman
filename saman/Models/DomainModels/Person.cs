@@ -44,6 +44,7 @@ namespace saman.Models.DomainModels
         public string DeathDate { get; set; }
         public string ParentId { get; set; }
         public bool Isargar { get; set; }
+        public Nullable<short> RetirementType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HealthInsurance> HealthInsurances { get; set; }

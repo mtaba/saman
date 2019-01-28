@@ -64,7 +64,7 @@
                         <td>@Html.DisplayFor(model => model.BirthDay) / @Html.DisplayFor(model => model.BirthMonth) / @Html.DisplayFor(model => model.BirthYear)</td>
 
                     </tr>
-                   
+
                     <tr>
                         <td>@Html.DisplayNameFor(model => model.Nesbat)</td>
                         <td>@Html.DisplayFor(model => model.Nesbat) </td>
@@ -79,12 +79,43 @@
                         <td>@Html.DisplayNameFor(model => model.Tel)</td>
                         <td>@Html.DisplayFor(model => model.Tel) </td>
                     </tr>
-               
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.RetirementType)</td>
+
+                        @switch (Model.RetirementType)
+                        {
+                            case 0:
+                                <td></td>
+                                break;
+
+                            case 1:
+                                <td>بازنشسته کشوری</td>
+                                break;
+
+                            case 2:
+                                <td>بازنشسته تامین اجتماعی</td>
+                                break;
+
+
+                            case 3:
+                                <td>موظفین کشوری</td>
+                                break;
+
+                            case 4:
+                                <td>مستمری بگیران تامین اجتماعی</td>
+                                break;
+
+
+                        }
+
+                    </tr>
+
                     <tr>
                         <td>@Html.DisplayNameFor(model => model.DeathDate)</td>
                         <td>@Html.DisplayFor(model => model.DeathDate) </td>
                     </tr>
-             
+
 
                 </table>
             </div>
