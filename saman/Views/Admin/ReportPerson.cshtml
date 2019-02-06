@@ -1,0 +1,143 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model  saman.VIewModels.PersonSearchViewModel
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+@using (Ajax.BeginForm("ReportPerson", "Admin", new AjaxOptions { UpdateTargetId = "PersonList", HttpMethod = "Post", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-horizontal box box-primary">
+
+                <div class="box-heade">
+                    <h4 class="box-title">گزارش تفکیکی اعضا</h4>
+                </div>
+
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+
+                        @Html.LabelFor(model => model.Person.RetirementType, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Person.RetirementType, new[] { new SelectListItem { Text = "انتخاب کنید", Value = "0" }, new SelectListItem { Text = "بازنشسته کشوری", Value = "1" }, new SelectListItem { Text = "بازنشسته تامین اجتماعی", Value = "2" }, new SelectListItem { Text = "موظفین کشوری", Value = "3" }, new SelectListItem { Text = "مستمری بگیران تامین اجتماعی", Value = "4" } }, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Person.RetirementType, "", new { @class = "text-danger" })
+                        </div>
+
+
+
+                        @*// @Html.LabelFor(model => model.Companies, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                        @*<div class="col-md-4">
+                @Html.DropDownListFor(model => model.Job.CompaniId, new SelectList(Model.Companies.Where(c => c.ParentId == 0), "Id", "Name"), new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Job.CompaniId, "", new { @class = "text-danger" })
+            </div>*@
+                        <label class="control-label col-md-2" for="Companies">محل خدمت</label>
+                        @* @Html.LabelFor(model => model.Companies, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Companies, new SelectList(Model.Companies.Where(c => c.ParentId == 0), "Id", "Name"),new { onchange = "handleChange()" } )
+                            @Html.ValidationMessageFor(model => model.Companies, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group" id="Companies-Group">
+                        <label class="control-label col-md-2" for="Companies">شهرستان</label>
+                        @* @Html.LabelFor(model => model.Companies, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.SubCompanies, new SelectList(Model.Companies.Where(c => c.ParentId != 0), "Id", "Name"), htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.SubCompanies, "", new { @class = "text-danger"  })
+                        </div>
+
+                    </div>
+
+
+                </div>
+                    
+
+                   
+
+                    <div class="form-group">
+                     
+                        <div class="col-md-4">
+                        
+                        </div>
+
+                       
+                        <div class="col-md-4">
+                      
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="جستجو" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+     
+
+}
+
+
+@*<div id="PersonList">
+    @if (Model.Payments != null)
+    {
+
+        // @Html.Partial("_Payments", Model.Payments);
+    }
+</div>*@
+
+@section scripts {
+    @Scripts.Render("~/Scripts/calendar")
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+}
+    <script>
+
+        if (document.getElementById("Companies").value != 25)
+            document.getElementById("Companies-Group").style.display = "none";
+    </script>
+    <script>
+        function handleChange() {
+            let val = document.getElementById("Companies").value;
+            if (val == 25)
+                document.getElementById("Companies-Group").style.display = "block";
+            else document.getElementById("Companies-Group").style.display = "none";
+        }
+        function getCityList() {
+
+            var CompanyId = $("#Company").val();
+
+            $.ajax({
+                url: 'GetCityList/',
+                type: 'POST',
+                datatype: 'json',
+                data: { CompanyId: $("#Company").val() },
+                success: function (result) {
+                    if (result.Success) {
+                        var data = JSON.parse(result.Html)
+                        var html = '';
+                        for (var i = 0; i < data.length; i++) {
+                            html +=
+                                '<text>' +
+                                '<option value="' + data[i].Id + '">' + data[i].Name + '</option>'
+                                + '</text>'
+
+                        }
+                        $("#Person_CompanyId").html(html);
+
+                    }
+                },
+                error: function (result) {
+                    alert("اوه! مثل اینکه مشکلی وجود داره");
+                }
+
+            })
+        }
+    </script>

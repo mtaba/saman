@@ -293,6 +293,7 @@
     <Compile Include="VIewModels\JobViewModel.cs" />
     <Compile Include="VIewModels\MembershipFeeViewModel.cs" />
     <Compile Include="VIewModels\PersonMadrakViewModel.cs" />
+    <Compile Include="VIewModels\PersonSearchViewModel.cs" />
     <Compile Include="VIewModels\PersonViewModel.cs" />
     <Compile Include="VIewModels\PrescriptionViewModel.cs" />
     <Compile Include="VIewModels\TreatmentViewModel.cs" />
@@ -534,6 +535,7 @@
     <Content Include="Views\Cheques\Report.cshtml" />
     <Content Include="Views\MembershipFee\Report.cshtml" />
     <Content Include="Views\MembershipFee\InsuranceReport.cshtml" />
+    <Content Include="Views\Admin\ReportPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

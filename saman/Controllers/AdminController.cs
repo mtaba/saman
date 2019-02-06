@@ -141,6 +141,16 @@ namespace saman.Controllers
 
         }
 
+        // GET: 
+        public ActionResult ReportPerson()
+        {
+            var model = new PersonSearchViewModel();
+            model.Companies = blCompany.Select();
+
+            return View(model);
+        }
+
+
         /*********************** # person ***********************/
 
         public ActionResult Retiremen()
