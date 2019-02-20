@@ -101,6 +101,14 @@ namespace saman.Models.EntityModels
         [Display(Name = "نوع بازنشستگی")]
         public string RetirementType { get; set; }
 
+        [DisplayName("تاریخ بازنشستگی")]
+        [Display(Name = "تاریخ بازنشستگی")]
+        public string RetirementDate { get; set; }
+
+        [DisplayName("تاریخ بازنشستگی")]
+        [Display(Name = "تاریخ بازنشستگی")]
+        public string RetirementCo { get; set; }
+
 
     }
 

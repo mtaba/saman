@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SamanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SamanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Banks">
           <Key>
             <PropertyRef Name="Id" />
@@ -125,6 +125,8 @@
           <Property Name="ParentId" Type="char" MaxLength="10" />
           <Property Name="Isargar" Type="bit" Nullable="false" />
           <Property Name="RetirementType" Type="smallint" />
+          <Property Name="RetirementDate" Type="nchar" MaxLength="10" />
+          <Property Name="RetirementCo" Type="int" />
         </EntityType>
         <EntityType Name="Places">
           <Key>
@@ -381,7 +383,8 @@
             <End Role="Retirees" EntitySet="Retirees" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SamanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -405,9 +408,9 @@
           <Property Name="Reason" Type="Int32" Nullable="false" />
           <Property Name="PaymentId" Type="Int32" Nullable="false" />
           <Property Name="AccountNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Bank" Relationship="Self.FK_Cheques_Banks" FromRole="Cheques" ToRole="Banks" />
           <NavigationProperty Name="Payment" Relationship="Self.FK_Cheques_Payments" FromRole="Cheques" ToRole="Payments" />
-          <Property Name="Status" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -478,9 +481,9 @@
           <Property Name="PersonId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="StartDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Cash" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Cheques" Relationship="Self.FK_Cheques_Payments" FromRole="Payments" ToRole="Cheques" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Payments_Persons" FromRole="Payments" ToRole="Persons" />
-          <Property Name="Cash" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="Person_Madraks">
           <Key>
@@ -516,13 +519,15 @@
           <Property Name="DeathDate" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="ParentId" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Isargar" Type="Boolean" Nullable="false" />
+          <Property Name="RetirementType" Type="Int16" />
+          <Property Name="RetirementDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="RetirementCo" Type="Int32" />
           <NavigationProperty Name="HealthInsurances" Relationship="Self.FK_HealthInsurances_Persons" FromRole="Persons" ToRole="HealthInsurances" />
           <NavigationProperty Name="Jobs" Relationship="Self.FK_Jobs_Persons" FromRole="Persons" ToRole="Jobs" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payments_Persons" FromRole="Persons" ToRole="Payments" />
           <NavigationProperty Name="Person_Madraks" Relationship="Self.FK_Person_Madraks_Persons" FromRole="Persons" ToRole="Person_Madraks" />
           <NavigationProperty Name="Prescriptions" Relationship="Self.FK_Prescription_Persons" FromRole="Persons" ToRole="Prescription" />
           <NavigationProperty Name="Retirees" Relationship="Self.FK_Retirees_Persons" FromRole="Persons" ToRole="Retirees" />
-          <Property Name="RetirementType" Type="Int16" />
         </EntityType>
         <EntityType Name="Place">
           <Key>
@@ -802,7 +807,6 @@
           <EntitySetMapping Name="Cheques">
             <EntityTypeMapping TypeName="SamanModel.Cheque">
               <MappingFragment StoreEntitySet="Cheques">
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ChequeId" ColumnName="ChequeId" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
@@ -811,6 +815,7 @@
                 <ScalarProperty Name="Reason" ColumnName="Reason" />
                 <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
                 <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -875,7 +880,6 @@
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="SamanModel.Payment">
               <MappingFragment StoreEntitySet="Payments">
-                <ScalarProperty Name="Cash" ColumnName="Cash" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
                 <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
@@ -883,6 +887,7 @@
                 <ScalarProperty Name="PersonId" ColumnName="PersonId" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Cash" ColumnName="Cash" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -899,7 +904,6 @@
           <EntitySetMapping Name="Persons">
             <EntityTypeMapping TypeName="SamanModel.Person">
               <MappingFragment StoreEntitySet="Persons">
-                <ScalarProperty Name="RetirementType" ColumnName="RetirementType" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="LName" ColumnName="LName" />
                 <ScalarProperty Name="PesonalCode" ColumnName="PesonalCode" />
@@ -919,6 +923,9 @@
                 <ScalarProperty Name="DeathDate" ColumnName="DeathDate" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Isargar" ColumnName="Isargar" />
+                <ScalarProperty Name="RetirementType" ColumnName="RetirementType" />
+                <ScalarProperty Name="RetirementDate" ColumnName="RetirementDate" />
+                <ScalarProperty Name="RetirementCo" ColumnName="RetirementCo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

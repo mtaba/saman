@@ -6,6 +6,11 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
+
+@section styles{
+    @Styles.Render("~/Styles/calendar")
+}
+
 <div class="row">
     <div class="col-md-12">
         <div class="form-horizontal box box-primary">
@@ -13,7 +18,7 @@
                 <h4 class="box-title">اطلاعات شخص</h4>
                 @ViewBag.Message
             </div>
-            @using (Html.BeginForm("AddPerson","Admin",FormMethod.Post))
+            @using (Html.BeginForm("AddPerson", "Admin", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
@@ -102,7 +107,7 @@
                         @Html.LabelFor(model => model.Person.Nesbat, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
                             <div class="checkbox">
-                                @Html.DropDownListFor(model => model.Person.Nesbat, new[] { new SelectListItem { Text = "بازنشسته", Value = "" }, new SelectListItem { Text = "همسر", Value = "12" }, new SelectListItem { Text = "دختر", Value = "8" }, new SelectListItem { Text = "پسر", Value = "7" }, new SelectListItem { Text = "مادر", Value = "6" } }, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.DropDownListFor(model => model.Person.Nesbat, new[] { new SelectListItem { Text = "بازنشسته", Value = "" }, new SelectListItem { Text = "همسر", Value = "12" }, new SelectListItem { Text = "دختر", Value = "8" }, new SelectListItem { Text = "پسر", Value = "7" }, new SelectListItem { Text = "مادر", Value = "6" } }, new { onchange = "handleChange()" } )
                                 @Html.ValidationMessageFor(model => model.Person.Nesbat, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -112,7 +117,7 @@
                         @Html.LabelFor(model => model.Person.ParentId, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
 
-                            @Html.EditorFor(model => model.Person.ParentId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Person.ParentId, new { htmlAttributes = new { @class = "form-control",disabled="true"} })
                             @Html.ValidationMessageFor(model => model.Person.ParentId, "", new { @class = "text-danger" })
 
                         </div>
@@ -133,11 +138,35 @@
                         </div>
                     </div>
 
+
+
+                    <hr />
                     <div class="form-group">
                         @Html.LabelFor(model => model.Person.RetirementType, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-4">
-                            @Html.DropDownListFor(model => model.Person.RetirementType, new[] { new SelectListItem { Text = "انتخاب کنید", Value = "0" }, new SelectListItem { Text = "بازنشسته کشوری", Value = "1" } , new SelectListItem { Text = "بازنشسته تامین اجتماعی", Value = "2" } , new SelectListItem { Text = "موظفین کشوری", Value = "3" }  , new SelectListItem { Text = "مستمری بگیران تامین اجتماعی", Value = "4" } }, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model => model.Person.RetirementType, new[] { new SelectListItem { Text = "انتخاب کنید", Value = "0" }, new SelectListItem { Text = "بازنشسته کشوری", Value = "1" }, new SelectListItem { Text = "بازنشسته تامین اجتماعی", Value = "2" }, new SelectListItem { Text = "موظفین کشوری", Value = "3" }, new SelectListItem { Text = "مستمری بگیران تامین اجتماعی", Value = "4" } }, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Person.RetirementType, "", new { @class = "text-danger" })
+                        </div>
+
+                        @Html.LabelFor(model => model.Person.RetirementDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="input-group col-md-4 col-lg-4">
+
+                            <div class="input-group-addon" data-mddatetimepicker="true" data-trigger="click" data-targetselector="#Person_RetirementDate" data-englishnumber="true" data-groupid="group1" data-enabletimepicker="false" data-placement="left">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                            @Html.TextBoxFor(model => model.Person.RetirementDate, htmlAttributes: new { @class = "form-control", data_englishnumber = "true", data_mddatetimepicker = "true", data_trigger = "click", data_targetselector = "#Person_RetirementDate", data_groupid = "group1", data_enabletimepicker = "false", data_placement = "right", data_disablebeforetoday = "false" })
+                            @Html.ValidationMessageFor(model => model.Person.RetirementDate, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="control-label col-md-2" for="Companies">محل خدمت</label>
+                        @* @Html.LabelFor(model => model.Companies, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <div class="col-md-4">
+                            @Html.DropDownListFor(model => model.Person.RetirementCo, new SelectList(Model.Companies, "Id", "Name"), new { htmlAttributes = new { @class = "form-control"  }  })
+                            @Html.ValidationMessageFor(model => model.Person.RetirementCo, "", new { @class = "text-danger" })
                         </div>
 
                         @Html.LabelFor(model => model.Person.DeathDate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -147,44 +176,53 @@
                         </div>
                     </div>
 
-
-
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-9">
-                            <input type="submit" value="افزودن" class="btn btn-default" />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-9">
+                                <input type="submit" value="افزودن" class="btn btn-default" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-            }
+                    }
                 </div>
     </div>
 </div>
 
 <div>
- 
+
     @Html.ActionLink("لیست اشخاص", "Persons")
 </div>
 
 @section Scripts {
+    @Scripts.Render("~/Scripts/calendar")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/AdminLTE/plugins/jquery-validate/js")
 
 
 }
+
 <script src="@Url.Content("~/AdminLTE/plugins/jquery-validate/js/jquery.validate.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
 <script>
-  
+
 
     function jsfunction(evt) {
-          evt.preventDefault();
-          return false;
+        evt.preventDefault();
+        return false;
     }
 
-  
-    function getCityList(){
+    function handleChange() {
+        console.log("Hellow")
+        const parentId = document.getElementById("Person_Nesbat").value;
+        console.log(parentId)
+        if (parentId != null) {
+            document.getElementById("Person_ParentId").disabled = false;
+                  
+        }
+    }
+
+    function getCityList() {
 
         var CompanyId = $("#Company").val();
 
@@ -197,16 +235,15 @@
                 if (result.Success) {
                     var data = JSON.parse(result.Html)
                     var html = '';
-                    for (var i = 0; i < data.length; i++)
-                    {
-                        html+=    
-                            '<text>'+
-                                '<option value="' + data[i].Id+'">'+ data[i].Name + '</option>'
-                           + '</text>'
+                    for (var i = 0; i < data.length; i++) {
+                        html +=
+                            '<text>' +
+                            '<option value="' + data[i].Id + '">' + data[i].Name + '</option>'
+                            + '</text>'
 
                     }
                     $("#Person_CompanyId").html(html);
-                   
+
                 }
             },
             error: function (result) {
@@ -214,7 +251,7 @@
             }
 
         })
-      }
+    }
 
 </script>
 

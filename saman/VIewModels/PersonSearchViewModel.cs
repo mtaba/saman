@@ -12,11 +12,12 @@ namespace saman.VIewModels
         public IEnumerable<Person> Persons { get; set; }
 
         public Person Person { get; set; }
-        
+
+        public Company Company { get; set; }
         public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<Company> SubCompanies { get; set; }
 
-        public IEnumerable<RetirementType> RetirmentTypes { get; set; }
+      
 
 
 

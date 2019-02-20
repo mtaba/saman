@@ -9,7 +9,11 @@ namespace saman.VIewModels
     public class PersonViewModel
     {
         public Person Person { get; set; }
-    
+
+        public Company Company { get; set; }
+
+        public IEnumerable<Company> Companies { get; set; }
+
 
 
     }

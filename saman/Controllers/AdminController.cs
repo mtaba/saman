@@ -12,6 +12,10 @@ using Newtonsoft.Json;
 
 namespace saman.Controllers
 {
+    public class Result
+    {
+        public string Name { get; set; }
+    }
     [Authorize]
     public class AdminController : Controller
     {
@@ -29,7 +33,7 @@ namespace saman.Controllers
 
         public ActionResult Persons()
         {
-
+            
             return View(blPerson.Select());
         }
 
@@ -38,9 +42,10 @@ namespace saman.Controllers
         [HttpGet]
         public ActionResult AddPerson()
         {
-      
+            PersonViewModel model = new PersonViewModel();
+            model.Companies = blCompany.Select();
 
-            return View();
+            return View(model);
         }
 
         // POST: Admin/Create
@@ -142,12 +147,60 @@ namespace saman.Controllers
         }
 
         // GET: 
+        [HttpGet]
         public ActionResult ReportPerson()
         {
             var model = new PersonSearchViewModel();
             model.Companies = blCompany.Select();
 
             return View(model);
+        }
+
+        private saman.Models.DomainModels.SamanEntities db = new SamanEntities();
+        [HttpPost]
+        public ActionResult ReportPerson(PersonSearchViewModel searchModel)
+        {
+
+            //var result = db.Persons.Join(
+            //      db.Jobs,
+            //      p => p.CodeMelli,
+            //      j => j.PersonId,
+            //       (p, j) => new { Person = p, Job = j }
+            //      ).Join(
+            //    db.Companies,
+            //    k=>k.Job.CompaniId,
+            //    c=>c.Jobs.com
+            //    )
+
+            /*   var list = db.Companies.Join(
+                   db.Jobs,
+                        c => c.Id,
+                        j => j.CompaniId,
+                        (c, j) => new { Company = c, Job = j }
+                  ).Join(
+                        db.Persons.Where(p => p.RetirementType == searchModel.Person.RetirementType),
+                        j => j.Job.PersonId,
+                        p=>p.CodeMelli,
+                        (p, j) => new { Person = p , Job = j }
+                   ).Select(m=>new
+                   {
+                       name = p.
+                   }
+                   );   */
+
+            //int param = 3;
+
+           IEnumerable<Person> people = db.Database.SqlQuery<Person>("select * from dbo.Persons as persons" +
+                        " join dbo.Jobs as jobs" +
+                        " on persons.CodeMelli = jobs.PersonId" +
+                        " join dbo.Companies as company" +
+                        " on company.Id = jobs.CompaniId " +
+                        " where (company.id = 1 and persons.RetirementType = 3)");
+
+
+
+
+            return PartialView("_PersonReportList", people);
         }
 
 
