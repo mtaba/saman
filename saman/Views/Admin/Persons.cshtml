@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<saman.Models.DomainModels.Person>
 
-@*@Styles.Render("~/AdminLTE/plugins/datatables/css")*@
+@Styles.Render("~/AdminLTE/plugins/datatables/css")
 @Styles.Render("~/Content/css")
 @section Menu {
     @Scripts.Render("~/Scripts/Tables/Data/menu")
 }
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/dataTables.bootstrap.min.css" />
+@*<link rel="stylesheet" type="text/css" href="dataTables.bootstrap.min.css" />*@
 
 @{
 
@@ -101,6 +101,7 @@
         $(document).ready(function () {
 
             $('#personListTable').DataTable({
+               
                 "language": {
 
                     "sEmptyTable": "هیچ داده ای در جدول وجود ندارد",
